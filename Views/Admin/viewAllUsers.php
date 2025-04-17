@@ -177,12 +177,10 @@
         {
             document.getElementById('editForm-' + userID).style.display = "flex";
         }
-
-        // function closeEditForm()
-        // {
-        //     editRoleDiv.style.display = "none";
-        // }
-
     </script>
+
+    <script src="../assets/js/plugins/bootstrap.min.js"></script>
+
+
 </body>
 </html>
