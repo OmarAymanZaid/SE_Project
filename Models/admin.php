@@ -44,6 +44,25 @@ class Admin extends User
         }
     }
 
+    public function editUserRole($userID, $role)
+    {
+        $this->db = new DBController;
+
+        if($this->db->openConnection())
+        {
+            $qry = "UPDATE users SET roleID = $role WHERE ID =$userID;";
+            $result = $this->db->update($qry);
+        
+            $this->db->closeConnection();
+            return $result;
+        }
+        else
+        {
+            echo"Error in Connection";
+        }
+
+    }
+
 
 }
 
