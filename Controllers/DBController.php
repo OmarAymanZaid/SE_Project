@@ -86,6 +86,21 @@
             }
         }
 
+        public function update($qry)
+        {
+            $result = $this->connection->query($qry);
+
+            if(!$result)
+            {
+                echo 'Error : ' . $this->connection->error;
+                return false ;
+            }
+            else
+            {
+                return $result ;
+            }
+        }
+
     }
 
 ?>
