@@ -73,6 +73,7 @@
     <!-- [Template CSS Files] -->
     <link rel="stylesheet" href="../assets/css/style.css" id="main-style-link" >
     <link rel="stylesheet" href="../assets/css/style-preset.css" >
+    <!-- [Custom CSS Files] -->
     <link rel="stylesheet" href="../assets/css/ourStyle.css" >
 
 </head>
@@ -116,6 +117,7 @@
     </nav>
 
     <header class="pc-header">
+
         <div class="header-wrapper"> <!-- [Mobile Media Block] start -->
             <div class="me-auto pc-mob-drp">
                 <ul class="list-unstyled">
@@ -195,47 +197,6 @@
                                                 <span class="float-end text-muted">3:00 AM</span>
                                                 <p class="text-body mb-1">It's <b>Cristina danny's</b> birthday today.</p>
                                                 <span class="text-muted">2 min ago</span>
-                                            </div>
-                                        </div>
-                                    </a>
-
-                                    <a class="list-group-item list-group-item-action">
-                                        <div class="d-flex">
-                                            
-                                            <div class="flex-shrink-0">
-                                                <img src="../assets/images/user/avatar-1.jpg" alt="user-image" class="user-avtar">
-                                            </div>
-
-                                            <div class="flex-grow-1 ms-1">
-                                                <span class="float-end text-muted">6:00 PM</span>
-                                                <p class="text-body mb-1"><b>Aida Burg</b> commented your post.</p>
-                                                <span class="text-muted">5 August</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="list-group-item list-group-item-action">
-                                        <div class="d-flex">
-                                            <div class="flex-shrink-0">
-                                                <img src="../assets/images/user/avatar-3.jpg" alt="user-image" class="user-avtar">
-                                            </div>
-
-                                            <div class="flex-grow-1 ms-1">
-                                                <span class="float-end text-muted">2:45 PM</span>
-                                                <p class="text-body mb-1"><b>There was a failure to your setup.</b></p>
-                                                <span class="text-muted">7 hours ago</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="list-group-item list-group-item-action">
-                                        <div class="d-flex">
-                                            <div class="flex-shrink-0">
-                                                <img src="../assets/images/user/avatar-4.jpg" alt="user-image" class="user-avtar">
-                                            </div>
-
-                                            <div class="flex-grow-1 ms-1">
-                                                <span class="float-end text-muted">9:10 PM</span>
-                                                <p class="text-body mb-1"><b>Cristina Danny </b> invited to join <b> Meeting.</b></p>
-                                                <span class="text-muted">Daily scrum meeting time</span>
                                             </div>
                                         </div>
                                     </a>
@@ -479,8 +440,38 @@
             document.getElementById('editForm-' + userID).style.display = "flex";
         }
     </script>
-
+    <!-- [Page Specific JS] start -->
+    <script src="../assets/js/plugins/apexcharts.min.js"></script>
+    <script src="../assets/js/pages/dashboard-default.js"></script>
+    <!-- [Page Specific JS] end -->
+    <!-- Required Js -->
+    <script src="../assets/js/plugins/popper.min.js"></script>
+    <script src="../assets/js/plugins/simplebar.min.js"></script>
     <script src="../assets/js/plugins/bootstrap.min.js"></script>
+    <script src="../assets/js/fonts/custom-font.js"></script>
+    <script src="../assets/js/pcoded.js"></script>
+    <script src="../assets/js/plugins/feather.min.js"></script>
+
+    
+    
+    
+    
+    <script>layout_change('light');</script>
+    
+    
+    
+    
+    <script>change_box_container('false');</script>
+    
+    
+    
+    <script>layout_rtl_change('false');</script>
+    
+    
+    <script>preset_change("preset-1");</script>
+    
+    
+    <script>font_change("Public-Sans");</script>
 
 </body>
 </html>
