@@ -26,7 +26,29 @@
         }
     }
 
-    $editUserRoleArr = array("userID" =>'', "roleID" => '');
+    $editRoleMsg = '';
+    if (isset($_POST["editRole"])) 
+    {
+        if (!empty($_POST["userID"])) 
+        {
+
+          $role;
+          if($_POST["role"] == 'admin')
+            $role = ADMIN_ROLE;
+          elseif($_POST["role"] == 'student')
+            $role = STUDENT_ROLE;
+          else
+            $role = TEACHER_ROLE;
+
+          if ($admin->editUserRole($_POST["userID"], $role))
+          {
+            $editRoleMsg = true;
+            $users = $admin->viewAllUsers();
+          }
+
+        }
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -95,12 +117,34 @@
                                     </form>                   
                                 </td>
                                 <td>
-                                    <form action="viewAllUsers.php" method="post">
-                                        <input type="hidden" name="userID" value="<?php echo $user["ID"] ?>">
-                                        <button type="submit" class="btn btn-outline-primary" onclick="openEditForm()" name="editRole">
-                                           <i class="fas fa-edit"></i>Edit
-                                         </button>
-                                    </form>
+
+                                    <button type="button" class="btn btn-outline-primary" onclick="openEditForm(<?=$user['ID'];?>)">
+                                        <i class="fas fa-edit"></i>Edit
+                                    </button>
+
+                                    <div class="justify-content-center container" style="border: 1px gray solid; margin-top:15px; padding: 15px; display:none;" id="editForm-<?=$user['ID'];?>">
+                                        <form action="viewAllUsers.php" method="post">
+                                            <h2>Edit User Role</h2>
+                                            <div class="container">
+                                                <div>
+                                                    <label class="form-label">Admin</label>
+                                                    <input type="radio" name="role" value="admin">
+                                                </div>
+                                                <div>
+                                                    <label class="form-label">Student</label>
+                                                    <input type="radio" name="role" value="student">
+                                                </div>
+                                                <div>
+                                                    <label class="form-label">Teacher</label>
+                                                    <input type="radio" name="role" value="teacher">
+                                                </div>
+                                            </div>
+                                            <input type="hidden" value = "<?=$user['ID'];?>" name="userID">
+                                            <button type="submit" class="btn btn-outline-danger" name="editRole">
+                                                Edit
+                                            </button>
+                                        </form>                   
+                                    </div>
                                 </td>
                             </tr>
                         <?php
@@ -126,35 +170,12 @@
         </div>
     </div>
 
-    <div class="justify-content-center container" style="border: 1px gray solid; padding: 15px; display:none;" id="editRoleDiv">
-        <form action="viewAllUsers.php" method="post">
-            <h2>Edit User Role</h2>
-            <div class="container">
-                <div>
-                    <label class="form-label">Admin</label>
-                    <input type="radio" name="role" value="admin">
-                </div>
-                <div>
-                    <label class="form-label">Student</label>
-                    <input type="radio" name="role" value="student">
-                </div>
-                <div>
-                    <label class="form-label">Teacher</label>
-                    <input type="radio" name="role" value="teacher">
-                </div>
-            </div>
-            <button type="submit" class="btn btn-outline-danger" name="editRole">
-                     Edit
-            </button>
-        </form>                   
-    </div>
 
-    <script>
-        const editRoleDiv = document.querySelector("#editRoleDiv");
-        
-        function openEditForm()
+
+    <script>        
+        function openEditForm(userID)
         {
-            editRoleDiv.style.display = "flex";
+            document.getElementById('editForm-' + userID).style.display = "flex";
         }
 
         // function closeEditForm()
