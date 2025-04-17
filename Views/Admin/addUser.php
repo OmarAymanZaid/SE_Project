@@ -39,6 +39,7 @@
           else
           {
                 $sucMsg = "User Added Successfully";
+                header("location: index.php");
           }
 
       }
@@ -123,7 +124,7 @@
                     {
                         ?>
                         <div class="alert alert-success" role="alert"> 
-                            <?php echo $sucMsg; $errMsg=""; ?>
+                            <?php echo $sucMsg; $errMsg="";?>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                         <?php
@@ -132,9 +133,12 @@
                     ?>
 
                     <div class="d-grid mt-3">
-                    <button type="submit" class="btn btn-primary" name="submit">Add</button>
+                        <button type="submit" class="btn btn-primary" name="submit"> Add </button>
                     </div>
             </form>
         </div>
     </div>
+
+    <script src="../assets/js/plugins/bootstrap.min.js"></script>
 </body>
+</html>
