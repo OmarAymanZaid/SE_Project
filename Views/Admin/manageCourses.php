@@ -1,3 +1,17 @@
+<?php
+
+require_once '../../Models/admin.php';
+require_once '../../Controllers/SessionController.php';
+require_once '../../Controllers/ConstantsController.php';
+require_once '../../Controllers/AuthController.php';
+
+
+// $userRole              = "admin";
+// $auth                  = new AuthController;    
+// $auth->redirectIfUnathuorized($userRole);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

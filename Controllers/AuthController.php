@@ -114,7 +114,7 @@ class AuthController
     }
 
 
-    public function redirectBasedOnRole($role)
+    public function redirectIfUnathuorized($role)
     {
         if(!isset($_SESSION['userRole']))
         {

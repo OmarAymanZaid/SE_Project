@@ -5,13 +5,20 @@
   require_once '../../Controllers/ConstantsController.php';
   require_once '../../Models/user.php';
 
-  $errMsg = '';
-  $sucMsg = '';
 
   if(!isSessionStarted())
   {
       start_session();
   }
+
+
+  $errMsg = '';
+  $sucMsg = '';
+
+//   $userRole              = "admin";
+//   $auth                  = new AuthController;    
+//   $auth->redirectIfUnathuorized($userRole);
+
 
 
   if(isset($_POST['submit']))

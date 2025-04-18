@@ -3,11 +3,12 @@
     require_once '../../Models/admin.php';
     require_once '../../Controllers/SessionController.php';
     require_once '../../Controllers/ConstantsController.php';
+    require_once '../../Controllers/AuthController.php';
 
-    if(!isSessionStarted())
-    {
-        session_start();
-    }
+
+    // $userRole              = "admin";
+    // $auth                  = new AuthController;    
+    // $auth->redirectIfUnathuorized($userRole);
 
 
     $admin = new Admin;
