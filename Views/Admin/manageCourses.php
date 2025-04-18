@@ -3,12 +3,16 @@
 require_once '../../Models/admin.php';
 require_once '../../Controllers/SessionController.php';
 require_once '../../Controllers/ConstantsController.php';
+require_once '../../Controllers/CourseController.php';
 require_once '../../Controllers/AuthController.php';
 
 
 // $userRole              = "admin";
 // $auth                  = new AuthController;    
 // $auth->redirectIfUnathuorized($userRole);
+
+$courseController = new CourseController;
+$courses = $courseController->getAllCourses();
 
 ?>
 
@@ -243,6 +247,41 @@ require_once '../../Controllers/AuthController.php';
             </div>
         </div>
     </header>
+
+    <div class="pc-container">
+
+        <div class="card-body">
+            
+            <?php if(count($courses) == 0 ): ?>
+                <h2 class="container" style="padding-top: 15px;">No Courses Available</h2>
+            
+            <?php else: ?>
+                <h3 style="padding:10px;">Courses</h3>
+                <div class="row">
+                    <div class="col-md-6 col-xxl-4">
+                        <?php foreach($courses as $course): ?>
+                            <div class="card mb-3" style="margin:10px; padding:10px;">
+                                <img class="img-fluid card-img-top" src="<?= $course['image'] ?>"
+                                    alt="Card image cap" style="border: 0.8px grey solid">
+                                <div class="card-body">
+                                    <h5 class="card-title"> <?= $course['name'] ?> </h5>
+                                    <p class="card-text"> <?= $course['description'] ?> </p>
+                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                        
+                    </div>
+                </div>
+            <?php endif;?>
+
+        </div>
+
+        <div style="padding:10px;">
+            <a class="btn btn-primary" href="addCourse.php" role="button">Add New Course</a>
+        </div>
+
+    </div>
 
 
     <?php include '../reusable/javascriptFiles.php'; ?>

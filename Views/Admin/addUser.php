@@ -33,7 +33,9 @@
           $user->email = $_POST['email'];
           $user->password = $_POST['password'];
 
-          if($_POST['role'] == 'student')
+          if($_POST['role'] == 'admin')
+            $user->roleID = ADMIN_ROLE;
+          elseif($_POST['role'] == 'student')
             $user->roleID = STUDENT_ROLE;
           else
             $user->roleID = TEACHER_ROLE;
@@ -79,21 +81,25 @@
                     </div>
 
                     <div class="form-group mb-3">
-                    <label class="form-label">Name*</label>
-                    <input type="text" class="form-control" placeholder="Name" name="name">
+                        <label class="form-label">Name*</label>
+                        <input type="text" class="form-control" placeholder="Name" name="name">
                     </div>
 
                     <div class="form-group mb-3">
-                    <label class="form-label">Email Address*</label>
-                    <input type="email" class="form-control" placeholder="Email Address" name="email">
+                        <label class="form-label">Email Address*</label>
+                        <input type="email" class="form-control" placeholder="Email Address" name="email">
                     </div>
 
                     <div class="form-group mb-3">
-                    <label class="form-label">Password</label>
-                    <input type="password" class="form-control" placeholder="Password" name="password">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" placeholder="Password" name="password">
                     </div>
 
                     <div class="form-group mb-3 d-flex justify-content-evenly align-items-center">
+                    <span>
+                        <label class="form-label">Admin</label>
+                        <input type="radio" name="role" value="admin">
+                    </span>
                     <span>
                         <label class="form-label">Student</label>
                         <input type="radio" name="role" value="student">
@@ -109,22 +115,16 @@
                     if($errMsg)
                     {
                         ?>
-                        <div class="alert alert-danger" role="alert"> 
-                            <?php echo $errMsg; $errMsg=""; ?>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
+                            <div class="row mb-3">
+                                <div class="offset-sm-3 col-sm-6">
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert"> 
+                                        <?php echo $errMsg; $errMsg=""; ?>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                </div>
+                            </div>
                         <?php
                     }
-                    else if($sucMsg)
-                    {
-                        ?>
-                        <div class="alert alert-success" role="alert"> 
-                            <?php echo $sucMsg; $errMsg="";?>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                        <?php
-                    }
-                    
                     ?>
 
                     <div class="d-grid mt-3">

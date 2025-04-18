@@ -63,7 +63,6 @@ class Admin extends User
 
     }
 
-
 }
 
 ?>
