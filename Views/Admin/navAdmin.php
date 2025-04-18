@@ -2,7 +2,7 @@
         <div class="navbar-wrapper">
 
             <div class="m-header">
-                <a href="../dashboard/index.html" class="b-brand text-primary">
+                <a href="index.php" class="b-brand text-primary">
                     <!-- ========   Change your logo from here   ============ -->
                     <img src="../assets/images/edusmarto-logo2.png" class="img-fluid" alt="logo" style="margin-top:30px;">
                 </a>
