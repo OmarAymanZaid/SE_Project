@@ -5,6 +5,7 @@ require_once '../../Controllers/SessionController.php';
 require_once '../../Controllers/ConstantsController.php';
 require_once '../../Controllers/CourseController.php';
 require_once '../../Controllers/AuthController.php';
+require_once '../../Controllers/UsersController.php';
 
 
 // $userRole              = "admin";
@@ -16,18 +17,20 @@ if(!isSessionStarted())
     session_start();
 }
 
-$courseController = new CourseController;
-$delMsg = "";
+$msg = "" ;
 
-if(isset($_POST['delete']))
+if(isset($_POST['assignCourse']))
 {
-    if($courseController->deleteCourse($_POST['courseID']))
+    $admin = new Admin;
+    if($admin->assignCourseToTeacher($_POST['userID'], $_SESSION['courseIDForAssignCourse']))
     {
-        $deleteMsg = true;
+        $msg = "Course Assigned Successfully !";
     }
 }
 
-$courses = $courseController->getAllCourses();
+$usersController = new UsersController;
+$users = $usersController->getAllTeachers();
+
 
 ?>
 
@@ -267,61 +270,65 @@ $courses = $courseController->getAllCourses();
 
         <div class="card-body">
             
-            <?php if(count($courses) == 0 ): ?>
-                <h2 class="container" style="padding-top: 15px;">No Courses Available</h2>
+            <?php if(count($users) == 0 ): ?>
+                <h2 class="container" style="padding-top: 15px;">No Teachers Available</h2>
             
             <?php else: ?>
-                <h3 style="padding:10px;">Courses</h3>
-                <div class="row">
-                    <div class="col-md-6 col-xxl-4">
-                        <?php foreach($courses as $course): ?>
+                <h3 style="padding:10px;">Teachers</h3>
 
-                            <div class="card mb-3" style="margin:10px; padding:10px;">
-                                <img class="img-fluid card-img-top" src="<?= $course['image'] ?>"
-                                    alt="Card image cap" style="border: 0.8px grey solid">
-                                <div class="card-body">
-                                    <h5 class="card-title"> <?= $course['name'] ?> </h5>
-                                    <p class="card-text"> <?= $course['description'] ?> </p>
-
-                                    <form action="manageCourses.php" method="post">
-                                            <input type="hidden" name="courseID" value="<?php echo $course["ID"] ?>">
-                                            <button type="submit" class="btn btn-outline-danger" name="delete"><i class='fas fa-trash-alt' style="margin-right: 6px;"></i>Delete</button>
-                                    </form>    
-
-                                    <?php $_SESSION['courseIDForAssignCourse'] = $course["ID"]; ?>
-                                    <a href="assignCourseToTeacher.php" class="btn btn-outline-primary" style="margin-top:10px" name="submit">
-                                        <i class="ti ti-book" style="margin-right: 6px;"></i>Assign
-                                    </a>
-
-
-
-                                </div>
-                            </div>
-                            
-                        <?php endforeach; ?>
+                <div class="dt-responsive table-responsive">
+                    <table id="multi-colum-dt" class="table table-striped table-bordered nowrap" style="text-align:center;">
+                    <thead>
+                        <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
                         
-                    </div>
+                            foreach($users as $user)
+                            {
+                            ?>
+                                <tr>
+                                    <td><?php echo $user['ID']; ?></td>
+                                    <td><?php echo $user['name']; ?></td>
+                                    <td><?php echo $user['email']; ?></td>
+                                    <td>
+                                        <form action="assignCourseToTeacher.php" method="post">
+                                            <input type="hidden" name="userID" value="<?php echo $user["ID"] ?>">
+                                            <button type="submit" class="btn btn-outline-primary" name="assignCourse" value="assign">
+                                                <i class='ti ti-book' style="margin-right: 6px;"></i> Assign
+                                            </button>
+                                        </form>                   
+                                    </td>
+                                </tr>
+                            <?php
+                            }
+                        
+                        ?>
+                    </tbody>
+                    </table>
                 </div>
-            <?php endif;?>
-
-        </div>
-
-        <?php if($delMsg): ?>
-            <div class="row mb-3">
-                <div class="offset-sm-3 col-sm-6">
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert"> 
-                            <?php echo $delMsg; ?>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                </div>
-            </div>
-        <?php endif; ?>
-
-        <div style="padding:10px;">
-            <a class="btn btn-primary" href="addCourse.php" role="button">Add New Course</a>
+            <?php endif; ?>
         </div>
 
     </div>
+
+    <?php if($msg): ?>
+        <div class="row mb-3">
+            <div class="offset-sm-3 col-sm-6">
+                <div class="alert alert-success alert-dismissible fade show" role="alert"> 
+                        <?php echo $msg; ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+
+
 
 
     <?php include '../reusable/javascriptFiles.php'; ?>

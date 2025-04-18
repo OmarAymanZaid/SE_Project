@@ -59,6 +59,26 @@ class Admin extends User
         else
         {
             echo"Error in Connection";
+            return false;
+        }
+    }
+
+    public function assignCourseToTeacher($teacherID, $courseID)
+    {
+        $this->db = new DBController;
+
+        if($this->db->openConnection())
+        {
+            $qry = "INSERT INTO teachers_courses VALUES($teacherID, $courseID)";
+            $result = $this->db->insert($qry);
+        
+            $this->db->closeConnection();
+            return $result;
+        }
+        else
+        {
+            echo"Error in Connection";
+            return false;
         }
 
     }
