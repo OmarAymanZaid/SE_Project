@@ -57,6 +57,25 @@
                 return false;
             }
         }
+
+        public function deleteCourse($courseID)
+        {
+            $this->db = new DBController;
+
+            if($this->db->openConnection())
+            {
+                $qry = "DELETE from courses WHERE ID='$courseID';";
+                $result = $this->db->delete($qry);
+            
+                $this->db->closeConnection();
+                return $result;
+            }
+            else
+            {
+                echo "Error in Connection";
+                return false;
+            }
+        }
    }
 
 ?>

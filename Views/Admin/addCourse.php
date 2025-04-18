@@ -35,7 +35,7 @@ $categories= $courseController->getCategories();
           $course->description = $_POST['description'];
           $course->categoryID      = $_POST['category'];
 
-          $location = "../images/" . $_FILES["image"]["name"] . date("h-i-s");
+          $location = "../images/"  . date("h-i-s") . $_FILES["image"]["name"];
 
           if (move_uploaded_file($_FILES["image"]["tmp_name"], $location))
           {

@@ -12,6 +12,16 @@ require_once '../../Controllers/AuthController.php';
 // $auth->redirectIfUnathuorized($userRole);
 
 $courseController = new CourseController;
+$delMsg = "";
+
+if(isset($_POST['delete']))
+{
+    if($courseController->deleteCourse($_POST['courseID']))
+    {
+        $deleteMsg = true;
+    }
+}
+
 $courses = $courseController->getAllCourses();
 
 ?>
@@ -266,7 +276,12 @@ $courses = $courseController->getAllCourses();
                                 <div class="card-body">
                                     <h5 class="card-title"> <?= $course['name'] ?> </h5>
                                     <p class="card-text"> <?= $course['description'] ?> </p>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+
+                                    <form action="manageCourses.php" method="post">
+                                            <input type="hidden" name="courseID" value="<?php echo $course["ID"] ?>">
+                                            <button type="submit" class="btn btn-outline-danger" name="delete"><i class='fas fa-trash-alt' style="margin-right: 6px;"></i>Delete</button>
+                                    </form>    
+
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -276,6 +291,17 @@ $courses = $courseController->getAllCourses();
             <?php endif;?>
 
         </div>
+
+        <?php if($delMsg): ?>
+            <div class="row mb-3">
+                <div class="offset-sm-3 col-sm-6">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert"> 
+                            <?php echo $delMsg; ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
 
         <div style="padding:10px;">
             <a class="btn btn-primary" href="addCourse.php" role="button">Add New Course</a>
