@@ -71,8 +71,18 @@ if(isset($_POST['email']) && isset($_POST['password']))
       <div class="auth-form">
 
         <div class="auth-header">
-          <a href="#"><img src="../assets/images/logo-dark.svg" alt="img"></a>
+          <a href="#"><img src="../assets/images/edusmarto-logo2_2.png" alt="img"></a>
         </div>
+
+        <!-- <div class="navbar-wrapper">
+
+            <div class="m-header">
+                <a href="index.php" class="b-brand text-primary">
+                    ========   Change your logo from here   ============
+                    <img src="../assets/images/edusmarto-logo2.png" class="img-fluid" alt="logo" style="margin-top:30px;">
+                </a>
+            </div>
+        </div> -->
 
         <div class="card my-5">
 

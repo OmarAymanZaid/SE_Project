@@ -59,8 +59,8 @@ if(isset($_POST['questionText']))
 
 
     <div class="pc-container">
-        <div class="card my-5">
-            <form class="card-body" action="addEvaluationQuestion.php" method="POST">
+        <div class="container">
+            <form class="card-body" action="addEvaluationQuestion.php" method="POST" style="padding:18px;">
                 <div class="d-flex justify-content-between align-items-end mb-4">
                     <h3 class="mb-0"><b>Add New Evaluation Question</b></h3>
                 </div>

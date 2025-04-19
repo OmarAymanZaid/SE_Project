@@ -28,7 +28,7 @@ if (isset($_POST["delete"]))
       if ($admin->deleteQuestion($_POST["questionID"])) 
       {
         $deleteMsg = true;
-        $evaluationQuestions = $admin->getQuestions();
+        $evaluationQuestions = $questionsController->getQuestions();
       }
     }
 }
@@ -80,7 +80,7 @@ $evaluationQuestions = $questionsController->getQuestions();
                                     <td><?php echo $evaluationQuestion['ID']; ?></td>
                                     <td><?php echo $evaluationQuestion['questionText']; ?></td>
                                     <td>
-                                        <form action="manageEvaluationQuestion.php" method="post">
+                                        <form action="manageEvaluationQuestions.php" method="post">
                                             <input type="hidden" name="questionID" value="<?php echo $evaluationQuestion["ID"] ?>">
                                             <button type="submit" class="btn btn-outline-danger" name="delete"><i class='fas fa-trash-alt' style="margin-right: 6px;"></i>Delete</button>
                                         </form>                   
