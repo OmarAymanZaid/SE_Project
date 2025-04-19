@@ -96,18 +96,18 @@
                     </div>
 
                     <div class="form-group mb-3 d-flex justify-content-evenly align-items-center">
-                    <span>
-                        <label class="form-label">Admin</label>
-                        <input type="radio" name="role" value="admin">
-                    </span>
-                    <span>
-                        <label class="form-label">Student</label>
-                        <input type="radio" name="role" value="student">
-                    </span>
-                    <span>
-                        <label class="form-label">Teacher</label>
-                        <input type="radio" name="role" value="teacher">
-                    </span>
+                        <span>
+                            <label class="form-label">Admin</label>
+                            <input type="radio" name="role" value="admin">
+                        </span>
+                        <span>
+                            <label class="form-label">Student</label>
+                            <input type="radio" name="role" value="student">
+                        </span>
+                        <span>
+                            <label class="form-label">Teacher</label>
+                            <input type="radio" name="role" value="teacher">
+                        </span>
                     </div>
 
                     <?php

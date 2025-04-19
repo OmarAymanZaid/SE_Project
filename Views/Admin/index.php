@@ -12,9 +12,9 @@
     }
 
 
-    $userRole              = "admin";
-    $auth                  = new AuthController;    
-    $auth->redirectIfUnathuorized($userRole);
+    // $userRole              = "admin";
+    // $auth                  = new AuthController;    
+    // $auth->redirectIfUnathuorized($userRole);
 
 
     $admin = new Admin;
@@ -165,10 +165,14 @@
                         if($deleteMsg)
                         {
                             ?>
-                            <div class="alert alert-success" role="alert"> 
-                                <?php echo 'User deleted successfully' ; ?>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
+                                <div class="row mb-3">
+                                    <div class="offset-sm-3 col-sm-6">
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert"> 
+                                            <?php echo 'User deleted successfully !'; ?>
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    </div>
+                                </div>
                             <?php
                         }
                     ?>

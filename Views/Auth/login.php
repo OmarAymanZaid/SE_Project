@@ -39,7 +39,7 @@ if(isset($_POST['email']) && isset($_POST['password']))
     }
     else
     {
-        $errMsg = "please fill in all fields";
+        $errMsg = "Please Fill In All Fields";
     }
 }
 
@@ -98,10 +98,10 @@ if(isset($_POST['email']) && isset($_POST['password']))
               if($errMsg)
               {
                 ?>
-                  <div class="alert alert-danger" role="alert"> 
-                      <?php echo $errMsg; $errMsg=""; ?>
-                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                  </div>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert"> 
+                        <?php echo $errMsg; $errMsg=""; ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                 <?php
               }
             

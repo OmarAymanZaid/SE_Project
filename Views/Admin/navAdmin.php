@@ -23,12 +23,21 @@
                             <span class="pc-mtext">Manage Users</span>
                         </a>
                     </li>
+
                     <li class="pc-item">
                         <a href="manageCourses.php" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-book"></i></span>
                             <span class="pc-mtext">Manage Courses</span>
                         </a>
                     </li>
+
+                    <li class="pc-item">
+                        <a href="manageEvaluationQuestions.php" class="pc-link">
+                            <span class="pc-micon"><i class="ti ti-clipboard-check"></i></span>
+                            <span class="pc-mtext">Manage Evaluation</span>
+                        </a>
+                    </li>
+
                 </ul>
             </div>
         </div>

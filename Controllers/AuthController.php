@@ -77,7 +77,9 @@ class AuthController
         if($this->db->openConnection())
         {
             $role;
-            if($user->roleID == STUDENT_ROLE)
+            if($user->roleID == ADMIN_ROLE)
+                $role = ADMIN_ROLE;
+            elseif($user->roleID == STUDENT_ROLE)
                 $role = STUDENT_ROLE;
             else
                 $role = TEACHER_ROLE;
@@ -89,7 +91,9 @@ class AuthController
             {
                 $_SESSION['userID'] = $result;
                 $_SESSION['userName'] = $user->name;
-                if($user->roleID == STUDENT_ROLE)
+                if($user->roleID == ADMIN_ROLE)
+                    $_SESSION['userRole'] = "admin";
+                elseif($user->roleID == STUDENT_ROLE)
                     $_SESSION['userRole'] = "student";
                 else
                     $_SESSION['userRole'] = "teacher";
