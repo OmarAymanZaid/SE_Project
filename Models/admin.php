@@ -80,7 +80,44 @@ class Admin extends User
             echo"Error in Connection";
             return false;
         }
+    }
 
+    public function addEvaluationQuestion(EvaluationQuestion $question)
+    {
+        $this->db = new DBController;
+
+        if($this->db->openConnection())
+        {
+            $qry    = "INSERT INTO evaluation_questions VALUES('', '$question->questionText');";
+            $result = $this->db->insert($qry); 
+
+            $this->db->closeConnection();
+            return $result;
+        }
+        else
+        {
+            echo 'Error In Connection';
+            return false;
+        }
+
+    }
+
+    public function deleteQuestion($questionID)
+    {
+        $this->db = new DBController;
+        if($this->db->openConnection())
+        {
+            $qry = "DELETE from evaluation_questions WHERE ID='$questionID';";
+            $result = $this->db->delete($qry);
+        
+            $this->db->closeConnection();
+            return $result;
+        }
+        else
+        {
+            echo"Error in Connection";
+            return false;
+        }
     }
 
 }

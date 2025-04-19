@@ -273,36 +273,30 @@ $courses = $courseController->getAllCourses();
             <?php else: ?>
                 <h3 style="padding:10px;">Courses</h3>
                 <div class="row">
+                <?php foreach($courses as $course): ?>
                     <div class="col-md-6 col-xxl-4">
-                        <?php foreach($courses as $course): ?>
+                        <div class="card mb-3" style="margin:10px; padding:10px;">
+                            <img class="img-fluid card-img-top" src="<?= $course['image'] ?>"
+                                alt="Card image cap" style="border: 0.8px grey solid">
+                            <div class="card-body">
+                                <h5 class="card-title"> <?= $course['name'] ?> </h5>
+                                <p class="card-text"> <?= $course['description'] ?> </p>
 
-                            <div class="card mb-3" style="margin:10px; padding:10px;">
-                                <img class="img-fluid card-img-top" src="<?= $course['image'] ?>"
-                                    alt="Card image cap" style="border: 0.8px grey solid">
-                                <div class="card-body">
-                                    <h5 class="card-title"> <?= $course['name'] ?> </h5>
-                                    <p class="card-text"> <?= $course['description'] ?> </p>
+                                <form action="manageCourses.php" method="post">
+                                        <input type="hidden" name="courseID" value="<?php echo $course["ID"] ?>">
+                                        <button type="submit" class="btn btn-outline-danger" name="delete"><i class='fas fa-trash-alt' style="margin-right: 6px;"></i>Delete</button>
+                                </form>    
 
-                                    <form action="manageCourses.php" method="post">
-                                            <input type="hidden" name="courseID" value="<?php echo $course["ID"] ?>">
-                                            <button type="submit" class="btn btn-outline-danger" name="delete"><i class='fas fa-trash-alt' style="margin-right: 6px;"></i>Delete</button>
-                                    </form>    
-
-                                    <?php $_SESSION['courseIDForAssignCourse'] = $course["ID"]; ?>
-                                    <a href="assignCourseToTeacher.php" class="btn btn-outline-primary" style="margin-top:10px" name="submit">
-                                        <i class="ti ti-book" style="margin-right: 6px;"></i>Assign
-                                    </a>
-
-
-
-                                </div>
+                                <?php $_SESSION['courseIDForAssignCourse'] = $course["ID"]; ?>
+                                <a href="assignCourseToTeacher.php" class="btn btn-outline-primary" style="margin-top:10px" name="submit">
+                                    <i class="ti ti-book" style="margin-right: 6px;"></i>Assign
+                                </a>
                             </div>
-                            
-                        <?php endforeach; ?>
-                        
+                        </div>
                     </div>
+                <?php endforeach; ?>
                 </div>
-            <?php endif;?>
+                <?php endif;?>
 
         </div>
 
