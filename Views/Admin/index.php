@@ -12,9 +12,9 @@
     }
 
 
-    // $userRole              = "admin";
-    // $auth                  = new AuthController;    
-    // $auth->redirectIfUnathuorized($userRole);
+    $userRole              = "admin";
+    $auth                  = new AuthController;    
+    $auth->redirectIfUnathuorized($userRole);
 
 
     $admin = new Admin;

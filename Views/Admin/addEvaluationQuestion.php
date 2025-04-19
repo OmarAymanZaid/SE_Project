@@ -12,9 +12,9 @@ if(!isSessionStarted())
     session_start();
 }
 
-// $userRole              = "admin";
-// $auth                  = new AuthController;    
-// $auth->redirectIfUnathuorized($userRole);
+$userRole              = "admin";
+$auth                  = new AuthController;    
+$auth->redirectIfUnathuorized($userRole);
 
 $errMsg = "" ;
 
@@ -55,7 +55,7 @@ if(isset($_POST['questionText']))
 
     <?php include 'navAdmin.php'; ?>
 
-    <?php // include '../reusable/actualReusableHeader.php'; ?>
+    <?php include '../reusable/actualReusableHeader.php'; ?>
 
 
     <div class="pc-container">

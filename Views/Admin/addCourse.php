@@ -16,9 +16,9 @@
   $errMsg = '';
   $sucMsg = '';
 
-//   $userRole              = "admin";
-//   $auth                  = new AuthController;    
-//   $auth->redirectIfUnathuorized($userRole);
+  $userRole              = "admin";
+  $auth                  = new AuthController;    
+  $auth->redirectIfUnathuorized($userRole);
 
 $courseController = new CourseController;
 $categories= $courseController->getCategories();
@@ -75,6 +75,8 @@ $categories= $courseController->getCategories();
 <body>
 
     <?php include 'navAdmin.php'; ?>
+
+    <?php include '../reusable/actualReusableHeader.php'; ?>
 
     <div class="pc-container">
         <div class="card my-5">

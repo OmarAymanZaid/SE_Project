@@ -15,9 +15,9 @@
   $errMsg = '';
   $sucMsg = '';
 
-//   $userRole              = "admin";
-//   $auth                  = new AuthController;    
-//   $auth->redirectIfUnathuorized($userRole);
+  $userRole              = "admin";
+  $auth                  = new AuthController;    
+  $auth->redirectIfUnathuorized($userRole);
 
 
 
@@ -72,6 +72,8 @@
 <body>
 
     <?php include 'navAdmin.php'; ?>
+
+    <?php include '../reusable/actualReusableHeader.php'; ?>
 
     <div class="pc-container">
         <div class="card my-5">
