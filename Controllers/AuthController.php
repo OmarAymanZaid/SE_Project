@@ -113,6 +113,13 @@ class AuthController
 
     }
 
+    public function logout()
+    {
+        session_destroy();
+    
+        header('location: ../Auth/login.php');
+    }
+
 
     public function redirectIfUnathuorized($role)
     {
