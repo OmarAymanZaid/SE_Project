@@ -2,6 +2,7 @@
 
 require_once '../../Controllers/DBController.php';
 require_once '../../Models/user.php';
+require_once '../../Models/notification.php';
 
 
 class Admin extends User
@@ -26,6 +27,26 @@ class Admin extends User
         }
     }
 
+    public function addUser(User $user)
+    {
+        $this->db = new DBController;
+
+        if($this->db->openConnection())
+        {
+
+            $qry = "insert into users values('' , '$user->name' , '$user->email' , '$user->password' ,'$user->roleID')";
+            $result = $this->db->insert($qry);
+
+            $this->db->closeConnection();
+            return $result;
+
+        }
+        else
+        {
+            echo 'Failed to open the database connection : <br>';
+            return false ;  
+        }
+    }
 
     public function deleteUser($userID)
     {
@@ -120,6 +141,44 @@ class Admin extends User
         }
     }
 
+    public function getNotifications()
+    {
+        $this->db=new DBController;
+
+        if($this->db->openConnection())
+        {
+            $qry="SELECT notifications.ID, users.name, notificationText FROM users JOIN notifications ON users.ID = notifications.userID;";
+            $result = $this->db->select($qry);
+
+            $this->db->closeConnection();
+            return $result;
+        }
+        else
+        {
+            echo "Error in Database Connection";
+            return false; 
+        }
+    }
+
+
+    public function addNotification(Notification $notification)
+    {
+        $this->db = new DBController;
+
+        if($this->db->openConnection())
+        {
+            $qry    = "INSERT INTO notifications VALUES('', $notification->userID,'$notification->notificationText');";
+            $result = $this->db->insert($qry); 
+
+            $this->db->closeConnection();
+            return $result;
+        }
+        else
+        {
+            echo 'Error In Connection';
+            return false;
+        }
+    }
 }
 
 ?>

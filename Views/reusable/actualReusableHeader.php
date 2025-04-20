@@ -1,3 +1,12 @@
+<?php
+
+require_once '../../Controllers/NotificationsController.php';
+
+$notificationController = new NotificationsController;
+$userNotifications = $notificationController->getSpecificUserNotifications($_SESSION['userID']);
+
+?>
+
 <header class="pc-header">
 
     <div class="header-wrapper"> <!-- [Mobile Media Block] start -->
@@ -70,20 +79,31 @@
                         <div class="dropdown-divider"></div>
 
                         <div class="dropdown-header px-0 text-wrap header-notification-scroll position-relative" style="max-height: calc(100vh - 215px)">
-                            <div class="list-group list-group-flush w-100">
-                                <a class="list-group-item list-group-item-action">
-                                    <div class="d-flex">
-                                        <div class="flex-shrink-0">
-                                            <img src="../assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar">
-                                        </div>
-                                        <div class="flex-grow-1 ms-1">
-                                            <span class="float-end text-muted">3:00 AM</span>
-                                            <p class="text-body mb-1">It's <b>Cristina danny's</b> birthday today.</p>
-                                            <span class="text-muted">2 min ago</span>
-                                        </div>
+                            <?php if(count($userNotifications) == 0 ): ?>
+                                <p class="text-muted text-center">No Notifications Available</p>
+                            
+                            <?php else:?>
+
+                                <?php foreach($userNotifications as $userNotification): ?>
+
+                                    <div class="list-group list-group-flush w-100">
+                                        <a class="list-group-item list-group-item-action">
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0">
+                                                    <img src="../assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar">
+                                                </div>
+                                                <div class="flex-grow-1 ms-1">
+                                                    <!-- <span class="float-end text-muted">3:00 AM</span> -->
+                                                    <p class="text-body mb-1"> <?= $userNotification['notificationText']; ?> </p>
+                                                    <!-- <span class="text-muted">2 min ago</span> -->
+                                                </div>
+                                            </div>
+                                        </a>
                                     </div>
-                                </a>
-                            </div>
+
+                                <?php endforeach; ?>
+                                
+                            <?php endif; ?>
                         </div>
 
                         <div class="dropdown-divider"></div>

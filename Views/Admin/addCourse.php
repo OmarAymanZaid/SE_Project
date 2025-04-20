@@ -79,7 +79,7 @@ $categories= $courseController->getCategories();
     <?php include '../reusable/actualReusableHeader.php'; ?>
 
     <div class="pc-container">
-        <div class="card my-5">
+        <div class="card-body" style="padding:15px">
             <form class="card-body" action="addCourse.php" method="POST" enctype="multipart/form-data">
                     <div class="d-flex justify-content-between align-items-end mb-4">
                     <h3 class="mb-0"><b>Add Course</b></h3>

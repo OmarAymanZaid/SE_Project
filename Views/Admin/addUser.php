@@ -4,6 +4,7 @@
   require_once '../../Controllers/AuthController.php';
   require_once '../../Controllers/ConstantsController.php';
   require_once '../../Models/user.php';
+  require_once '../../Models/admin.php';
 
 
   if(!isSessionStarted())
@@ -20,13 +21,12 @@
   $auth->redirectIfUnathuorized($userRole);
 
 
-
   if(isset($_POST['submit']))
   {
       if(!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['role']))
       {
           $user = new User;
-          $auth = new AuthController;
+          $admin = new Admin;
 
 
           $user->name = $_POST['name'];
@@ -41,7 +41,7 @@
             $user->roleID = TEACHER_ROLE;
 
 
-          if(!$auth->register($user))
+          if(!$admin->addUser($user))
           {
               $errMsg = $_SESSION['errMsg'];
           }
@@ -76,7 +76,7 @@
     <?php include '../reusable/actualReusableHeader.php'; ?>
 
     <div class="pc-container">
-        <div class="card my-5">
+        <div class="card-body" style="padding:15px">
             <form class="card-body" action="addUser.php" method="POST">
                     <div class="d-flex justify-content-between align-items-end mb-4">
                     <h3 class="mb-0"><b>Add New User</b></h3>
