@@ -7,6 +7,7 @@ class User
     public $email;
     public $password;
     public $roleID;
+    public $image;
 }
 
 ?>

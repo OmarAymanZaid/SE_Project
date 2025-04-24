@@ -23,19 +23,19 @@
         $auth->logout();
     }
 
-    $delMsg = false;
-    if (isset($_POST["drop"])) 
+    $msg = false;
+    if(isset($_POST['enroll']))
     {
         $student = new Student;
-
-        if ($student->dropCourse($_POST["courseID"], $_SESSION["userID"])) 
+        
+        if($student->enrollInCourse($_POST['courseID'], $_SESSION['userID']))
         {
-            $delMsg = "Course Dropped Successfully!";
+            $msg = "Enrolled Successfully !";
         }
     }
 
     $courseController = new CourseController;
-    $courses = $courseController->getCoursesEnrolledByStudent($_SESSION["userID"]);
+    $courses = $courseController->getNewCoursesToStudent($_SESSION['userID']);
 
 
 ?>
@@ -60,10 +60,10 @@
         <div class="card-body">
             
             <?php if(count($courses) == 0 ): ?>
-                <h2 class="container" style="padding-top: 15px;">No Enrolled Courses</h2>
+                <h2 class="container" style="padding-top: 15px;">No Available Courses</h2>
             
             <?php else: ?>
-                <h3 style="padding:10px;">Enrolled Courses</h3>
+                <h3 style="padding:10px;">Courses</h3>
                 <div class="row">
                 <?php foreach($courses as $course): ?>
                     <div class="col-md-6 col-xxl-4">
@@ -74,11 +74,10 @@
                                 <h5 class="card-title"> <?= $course['name'] ?> </h5>
                                 <p class="card-text"> <?= $course['description'] ?> </p>
 
-                                <form action="index.php" method="post">
-                                        <input type="hidden" name="courseID" value="<?php echo $course["ID"] ?>">
-                                        <button type="submit" class="btn btn-outline-danger" name="drop"><i class='fas fa-trash-alt' style="margin-right: 6px;"></i>Drop</button>
+                                <form action="enrollInCourses.php" method="post">
+                                        <input type="hidden" name="courseID" value="<?php echo $course['ID'] ?>">
+                                        <button type="submit" class="btn btn-outline-primary" name="enroll"><i class='ti ti-layout-grid-add' style="margin-right: 6px;"></i>Enroll</button>
                                 </form>    
-
                             </div>
                         </div>
                     </div>
@@ -88,20 +87,17 @@
 
         </div>
 
-        <?php if($delMsg): ?>
+        <?php if($msg): ?>
             <div class="row mb-3">
                 <div class="offset-sm-3 col-sm-6">
                     <div class="alert alert-success alert-dismissible fade show" role="alert"> 
-                            <?php echo $delMsg; ?>
+                            <?php echo $msg; ?>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 </div>
             </div>
         <?php endif; ?>
 
-        <div style="padding:10px;">
-            <a class="btn btn-primary" href="enrollInCourses.php" role="button">Discover More Courses</a>
-        </div>
 
     </div>
 

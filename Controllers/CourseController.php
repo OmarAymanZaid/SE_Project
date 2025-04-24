@@ -41,6 +41,44 @@ require_once '../../Controllers/DBController.php';
             }
         }
 
+        public function getCoursesEnrolledByStudent($studentID)
+        {
+            $this->db = new DBController;
+
+            if($this->db->openConnection())
+            {
+                $qry = "SELECT * from courses JOIN student_courses ON courses.ID = student_courses.courseID WHERE studentID = $studentID;";
+                $result = $this->db->select($qry);
+            
+                $this->db->closeConnection();
+                return $result;
+            }
+            else
+            {
+                echo"Error in Connection";
+                return false;
+            }
+        }
+
+        public function getNewCoursesToStudent($studentID)
+        {
+            $this->db = new DBController;
+
+            if($this->db->openConnection())
+            {
+                $qry = "SELECT * from courses LEFT JOIN student_courses ON courses.ID = student_courses.courseID WHERE studentID != $studentID OR studentID IS NULL;";
+                $result = $this->db->select($qry);
+            
+                $this->db->closeConnection();
+                return $result;
+            }
+            else
+            {
+                echo"Error in Connection";
+                return false;
+            }
+        }
+
         public function addCourse($course)
         {
             $this->db = new DBController;
