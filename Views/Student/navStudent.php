@@ -26,25 +26,19 @@
 
                     <li class="pc-item">
                         <a href="evaluateTeachers.php" class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-user-plus"></i></span>
+                            <span class="pc-micon"><i class="ti ti-user"></i></span>
                             <span class="pc-mtext">Teachers</span>
                         </a>
                     </li>
 
 
-                    <!-- <li class="pc-item">
-                        <a href="manageEvaluationQuestions.php" class="pc-link">
+                    <li class="pc-item">
+                        <a href="assignments.php" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-clipboard-check"></i></span>
-                            <span class="pc-mtext">Manage Evaluation</span>
+                            <span class="pc-mtext">Assignments</span>
                         </a>
-                    </li> -->
+                    </li>
 
-                    <!-- <li class="pc-item">
-                        <a href="manageNotifications.php" class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-bell-ringing"></i></span>
-                            <span class="pc-mtext">View Notifications</span>
-                        </a>
-                    </li> -->
 
                 </ul>
             </div>
