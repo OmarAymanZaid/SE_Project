@@ -124,7 +124,8 @@ $userNotifications = $notificationController->getSpecificUserNotifications($_SES
                         data-bs-auto-close="outside"
                         aria-expanded="false"
                     >
-                        <img src="../assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar">
+                        <!-- <img src="../assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar"> -->
+                        <img src="<?=$_SESSION["userImage"]?>" alt="user-image" class="user-avtar wid-35">
                         <span> <?=$_SESSION['userName']?> </span>
                     </a>
 
@@ -134,7 +135,8 @@ $userNotifications = $notificationController->getSpecificUserNotifications($_SES
                             <div class="d-flex mb-1">
 
                                 <div class="flex-shrink-0">
-                                    <img src="../assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar wid-35">
+                                    <!-- <img src="../assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar wid-35"> -->
+                                    <img src="<?=$_SESSION["userImage"]?>" alt="user-image" class="user-avtar wid-35">
                                 </div>
 
                                 <div class="flex-grow-1 ms-3">
@@ -163,24 +165,11 @@ $userNotifications = $notificationController->getSpecificUserNotifications($_SES
 
                         <div class="tab-content" id="mysrpTabContent">
                             <div class="tab-pane fade show active" id="drp-tab-1" role="tabpanel" aria-labelledby="drp-t1" tabindex="0">
-                                <a href="#!" class="dropdown-item">
-                                    <i class="ti ti-edit-circle"></i>
-                                    <span>Edit Profile</span>
-                                </a>
 
-                                <a href="#!" class="dropdown-item">
+
+                                <a href="viewProfile.php" class="dropdown-item">
                                     <i class="ti ti-user"></i>
                                     <span>View Profile</span>
-                                </a>
-
-                                <a href="#!" class="dropdown-item">
-                                    <i class="ti ti-clipboard-list"></i>
-                                    <span>Social Profile</span>
-                                </a>
-
-                                <a href="#!" class="dropdown-item">
-                                    <i class="ti ti-wallet"></i>
-                                    <span>Billing</span>
                                 </a>
 
                                 <form action="index.php" method="post">

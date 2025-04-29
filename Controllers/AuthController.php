@@ -43,6 +43,9 @@ class AuthController
                 {
                     $_SESSION['userID'] = $result[0]['ID'];
                     $_SESSION['userName'] = $result[0]['name'];
+                    $_SESSION['userEmail'] = $result[0]['email'];
+                    $_SESSION['userImage'] = $result[0]['image'];
+                    
                     if($result[0]['roleID'] == ADMIN_ROLE)
                     {
                         $_SESSION['userRole'] = 'admin';
