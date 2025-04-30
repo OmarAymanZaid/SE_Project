@@ -74,7 +74,12 @@
                                 <h5 class="card-title"> <?= $course['name'] ?> </h5>
                                 <p class="card-text"> <?= $course['description'] ?> </p>
 
-                                <form action="index.php" method="post">
+                                <a href="material.php?courseID=<?=$course['ID']?>" class="btn btn-outline-primary">
+                                    <i class='fas fa-trash-alt' style="margin-right: 6px;"></i> Material
+                                </a>
+
+
+                                <form action="index.php" method="post" style="margin-left: 5px; display: inline-block;">
                                         <input type="hidden" name="courseID" value="<?php echo $course["ID"] ?>">
                                         <button type="submit" class="btn btn-outline-danger" name="drop"><i class='fas fa-trash-alt' style="margin-right: 6px;"></i>Drop</button>
                                 </form>    
