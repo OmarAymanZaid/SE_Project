@@ -66,7 +66,7 @@ require_once '../../Controllers/DBController.php';
 
             if($this->db->openConnection())
             {
-                $qry = "SELECT * from courses LEFT JOIN student_courses ON courses.ID = student_courses.courseID WHERE studentID != $studentID OR studentID IS NULL;";
+                $qry = "SELECT * from courses LEFT JOIN student_courses ON courses.ID = student_courses.courseID WHERE (studentID != $studentID OR studentID IS NULL) AND courses.ID NOT IN (SELECT courseID FROM student_courses WHERE studentID = $studentID);";
                 $result = $this->db->select($qry);
             
                 $this->db->closeConnection();
@@ -78,6 +78,46 @@ require_once '../../Controllers/DBController.php';
                 return false;
             }
         }
+
+        public function getCoursesAssignedToTeacher($teacherID)
+        {
+            $this->db = new DBController;
+
+            if($this->db->openConnection())
+            {
+                $qry = "SELECT * from courses JOIN teachers_courses ON courses.ID = teachers_courses.courseID WHERE teacherID = $teacherID;";
+                $result = $this->db->select($qry);
+            
+                $this->db->closeConnection();
+                return $result;
+            }
+            else
+            {
+                echo"Error in Connection";
+                return false;
+            }
+        }
+
+
+        public function getCoursesNewToTeacher($teacherID)
+        {
+            $this->db = new DBController;
+
+            if($this->db->openConnection())
+            {
+                $qry = "SELECT * from courses LEFT JOIN teachers_courses ON courses.ID = teachers_courses.courseID WHERE (teacherID != $teacherID OR teacherID IS NULL) AND courses.ID NOT IN (SELECT courseID FROM teachers_courses WHERE teacherID = $teacherID);";
+                $result = $this->db->select($qry);
+            
+                $this->db->closeConnection();
+                return $result;
+            }
+            else
+            {
+                echo"Error in Connection";
+                return false;
+            }
+        }
+
 
         public function addCourse($course)
         {
