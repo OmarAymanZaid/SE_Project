@@ -54,7 +54,7 @@
 
     <?php include 'navStudent.php'; ?>
 
-    <?php include '../reusable/actualReusableHeader.php'; ?>
+    <?php include 'studentHeader.php'; ?>
 
     <div class="pc-container">
 
@@ -90,7 +90,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5>Upload Image</h5>
+                                <h5>Upload Assignment</h5>
                             </div>
 
                             <div class="card-body">

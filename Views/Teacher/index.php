@@ -77,7 +77,8 @@
                                 <form action="index.php" method="post">
                                         <input type="hidden" name="courseID" value="<?php echo $course["ID"] ?>">
                                         <button type="submit" class="btn btn-outline-danger" name="cancel"><i class='fas fa-trash-alt' style="margin-right: 6px;"></i>Cancel</button>
-                                </form>    
+                                </form>
+                                
 
                             </div>
                         </div>

@@ -32,12 +32,12 @@
                     </li>
 
 
-                    <!-- <li class="pc-item">
-                        <a href="assignments.php" class="pc-link">
+                    <li class="pc-item">
+                        <a href="material.php" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-clipboard-check"></i></span>
-                            <span class="pc-mtext">Assignments</span>
+                            <span class="pc-mtext">Material</span>
                         </a>
-                    </li> -->
+                    </li>
 
 
                 </ul>

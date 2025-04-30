@@ -53,7 +53,7 @@
 
     <?php include 'navStudent.php'; ?>
 
-    <?php include '../reusable/actualReusableHeader.php'; ?>
+    <?php include 'studentHeader.php'; ?>
 
     <div class="pc-container">
 

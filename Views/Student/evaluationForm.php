@@ -68,7 +68,7 @@
 
     <?php include 'navStudent.php'; ?>
 
-    <?php include '../reusable/actualReusableHeader.php'; ?>
+    <?php include 'studentHeader.php'; ?>
 
     <div class="pc-container">
         <div class="card-body" style="padding:15px">

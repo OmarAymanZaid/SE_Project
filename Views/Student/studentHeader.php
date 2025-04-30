@@ -4,6 +4,8 @@ require_once '../../Controllers/NotificationsController.php';
 
 $notificationController = new NotificationsController;
 $userNotifications = $notificationController->getSpecificUserNotifications($_SESSION['userID']);
+$courseAnnouncements = $notificationController->getCourseAnnouncements($_SESSION['userID']);
+
 
 ?>
 
@@ -67,6 +69,61 @@ $userNotifications = $notificationController->getSpecificUserNotifications($_SES
                         aria-haspopup="false"
                         aria-expanded="false"
                     >
+                        <i class="ti ti-mail"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown">
+
+                        <div class="dropdown-header d-flex align-items-center justify-content-between">
+                            <h5 class="m-0">Announcements</h5>
+                            <a href="#!" class="pc-head-link bg-transparent"><i class="ti ti-x text-danger"></i></a>
+                        </div>
+
+                        <div class="dropdown-divider"></div>
+
+                        <div class="dropdown-header px-0 text-wrap header-notification-scroll position-relative" style="max-height: calc(100vh - 215px)">
+                            <?php if(count($courseAnnouncements) == 0 ): ?>
+                                <p class="text-muted text-center">No Announcements Available</p>
+                            
+                            <?php else:?>
+                                <?php foreach($courseAnnouncements as $courseAnnouncement): ?>
+
+                                    <div class="list-group list-group-flush w-100">
+                                        <a class="list-group-item list-group-item-action">
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0">
+                                                    <img src="../assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar">
+                                                </div>
+                                                <div class="flex-grow-1 ms-1">
+                                                    <!-- <span class="float-end text-muted">3:00 AM</span> -->
+                                                    <p class="text-body mb-1"> <?= $courseAnnouncement['announcementText']; ?> </p>
+                                                    <!-- <span class="text-muted">2 min ago</span> -->
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </div>
+
+                        <div class="dropdown-divider"></div>
+
+                        <div class="text-center py-2">
+                            <a href="#!" class="link-primary">View all</a>
+                        </div>
+                    </div>
+                </li>
+                
+
+                <li class="dropdown pc-h-item">
+                    <a
+                        class="pc-head-link dropdown-toggle arrow-none me-0"
+                        data-bs-toggle="dropdown"
+                        href="#"
+                        role="button"
+                        aria-haspopup="false"
+                        aria-expanded="false"
+                    >
                         <i class="ti ti-bell"></i>
                     </a>
                     <div class="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown">
@@ -104,6 +161,7 @@ $userNotifications = $notificationController->getSpecificUserNotifications($_SES
                                 <?php endforeach; ?>
                                 
                             <?php endif; ?>
+                        </div>
 
                         <div class="dropdown-divider"></div>
 
