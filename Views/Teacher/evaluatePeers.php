@@ -68,7 +68,7 @@
                                     <i class='ti ti-star' style="margin-right: 6px;"></i>Evaluate
                                 </a>
 
-                                <a href="viewTeacherProfile.php" class="btn btn-outline-primary">
+                                <a href="viewUserProfile.php?userProfileID=<?=$teacher['ID']?>" class="btn btn-outline-primary">
                                     <i class='ti ti-user' style="margin-right: 6px;"></i>  Profile
                                 </a>
 

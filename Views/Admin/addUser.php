@@ -32,6 +32,7 @@
           $user->name = $_POST['name'];
           $user->email = $_POST['email'];
           $user->password = $_POST['password'];
+          $user->image = "../images/anonymousIcon.jpg";
 
           if($_POST['role'] == 'admin')
             $user->roleID = ADMIN_ROLE;

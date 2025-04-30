@@ -6,6 +6,26 @@ class UsersController
 {
     protected $db;
 
+    public function getUser($userID)
+    {
+        $this->db = new DBController;
+
+        if($this->db->openConnection())
+        {
+            $qry = "SELECT * FROM users WHERE ID = $userID";
+            $result = $this->db->select($qry);
+
+            $this->db->closeConnection();
+            return $result;
+        }
+        else
+        {
+            echo "Error In Database Connection";
+            return false;
+        }
+
+    }
+
     public function getAllTeachers()
     {
         $this->db = new DBController;

@@ -160,6 +160,13 @@
                                             Notify
                                         </a>
                                     </td>
+
+                                    <td>
+                                        <a href="viewUserProfile.php?userProfileID=<?=$user['ID']?>" class="btn btn-outline-success">
+                                            <i class="ti ti-user" ></i>
+                                            Profile
+                                        </a>
+                                    </td>
                                 </tr>
                             <?php
                             }

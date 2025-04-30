@@ -34,7 +34,7 @@ class Admin extends User
         if($this->db->openConnection())
         {
 
-            $qry = "insert into users values('' , '$user->name' , '$user->email' , '$user->password' ,'$user->roleID')";
+            $qry = "insert into users values('' , '$user->name' , '$user->email' , '$user->password' ,'$user->roleID', '$user->image')";
             $result = $this->db->insert($qry);
 
             $this->db->closeConnection();
