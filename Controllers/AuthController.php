@@ -14,60 +14,49 @@ class AuthController
 {
     protected $db;
 
+
     public function login(User $user)
     {
-        $this->db = new DBController;
+        $this->db = DBController::getInstance();
 
-        if($this->db->openConnection())
+
+        $qry = "select * from users where email = '$user->email' and password='$user->password'";
+        $result = $this->db->select($qry);
+
+        if($result === false)
         {
-            $qry = "select * from users where email = '$user->email' and password='$user->password'";
-            $result = $this->db->select($qry);
-
-            if($result === false)
+            echo 'error in query';
+            return false ;
+        }
+        else
+        {
+            if(count($result) == 0)
             {
-                echo 'error in query';
-                
-                $this->db->closeConnection();
+                $_SESSION['errMsg'] = 'wrong email or password';
                 return false ;
             }
             else
             {
-                if(count($result) == 0)
+                $_SESSION['userID'] = $result[0]['ID'];
+                $_SESSION['userName'] = $result[0]['name'];
+                $_SESSION['userEmail'] = $result[0]['email'];
+                $_SESSION['userImage'] = $result[0]['image'];
+                
+                if($result[0]['roleID'] == ADMIN_ROLE)
                 {
-                    $_SESSION['errMsg'] = 'wrong email or password';
-
-                    $this->db->closeConnection();
-                    return false ;
+                    $_SESSION['userRole'] = 'admin';
+                }
+                else if($result[0]['roleID'] == STUDENT_ROLE)
+                {
+                    $_SESSION['userRole'] = 'student';
                 }
                 else
                 {
-                    $_SESSION['userID'] = $result[0]['ID'];
-                    $_SESSION['userName'] = $result[0]['name'];
-                    $_SESSION['userEmail'] = $result[0]['email'];
-                    $_SESSION['userImage'] = $result[0]['image'];
-                    
-                    if($result[0]['roleID'] == ADMIN_ROLE)
-                    {
-                        $_SESSION['userRole'] = 'admin';
-                    }
-                    else if($result[0]['roleID'] == STUDENT_ROLE)
-                    {
-                        $_SESSION['userRole'] = 'student';
-                    }
-                    else
-                    {
-                        $_SESSION['userRole'] = 'teacher';
-                    }
-
-                    $this->db->closeConnection();
-                    return true;
+                    $_SESSION['userRole'] = 'teacher';
                 }
+
+                return true;
             }
-        }
-        else
-        {
-            echo 'Failed to open the database connection : <br>';
-            return false ;
         }
 
     }
@@ -75,48 +64,33 @@ class AuthController
 
     public function register(User $user)
     {
-        $this->db = new DBController;
+        $this->db = DBController::getInstance();
 
-        if($this->db->openConnection())
-        {
-            $role;
-            if($user->roleID == ADMIN_ROLE)
-                $role = ADMIN_ROLE;
-            elseif($user->roleID == STUDENT_ROLE)
-                $role = STUDENT_ROLE;
-            else
-                $role = TEACHER_ROLE;
-
-            $qry = "insert into users values('' , '$user->name' , '$user->email' , '$user->password' ,'$role')";
-            $result = $this->db->insert($qry);
-
-            if($result != false)
-            {
-                $_SESSION['userID'] = $result;
-                $_SESSION['userName'] = $user->name;
-                if($user->roleID == ADMIN_ROLE)
-                    $_SESSION['userRole'] = "admin";
-                elseif($user->roleID == STUDENT_ROLE)
-                    $_SESSION['userRole'] = "student";
-                else
-                    $_SESSION['userRole'] = "teacher";
-
-
-                return true;
-            }
-            else
-            {
-                $_SESSION['errMsg'] = "something went wrong .. try again";
-                return false ;
-            }
-
-            $this->db->closeConnection();
-        }
+        $role;
+        if($user->roleID == ADMIN_ROLE)
+            $role = ADMIN_ROLE;
+        elseif($user->roleID == STUDENT_ROLE)
+            $role = STUDENT_ROLE;
         else
+            $role = TEACHER_ROLE;
+
+        $qry = "insert into users values('' , '$user->name' , '$user->email' , '$user->password' ,'$role')";
+        $result = $this->db->insert($qry);
+
+        if($result != false)
         {
-            echo 'Failed to open the database connection : <br>';
-            return false ;  
+            $_SESSION['userID'] = $result;
+            $_SESSION['userName'] = $user->name;
+            if($user->roleID == ADMIN_ROLE)
+                $_SESSION['userRole'] = "admin";
+            elseif($user->roleID == STUDENT_ROLE)
+                $_SESSION['userRole'] = "student";
+            else
+                $_SESSION['userRole'] = "teacher";
+
+            return true;
         }
+        
 
     }
 

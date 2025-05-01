@@ -9,40 +9,24 @@ class NotificationsController
 
     public function getSpecificUserNotifications($userID)
     {
-        $this->db=new DBController;
+        $this->db = DBController::getInstance();
 
-        if($this->db->openConnection())
-        {
-            $qry="SELECT notificationText FROM notifications WHERE userId = $userID;";
-            $result = $this->db->select($qry);
+        $qry="SELECT notificationText FROM notifications WHERE userId = $userID;";
+        $result = $this->db->select($qry);
 
-            $this->db->closeConnection();
-            return $result;
-        }
-        else
-        {
-            echo "Error in Database Connection";
-            return false; 
-        }
+        return $result;
+        
     }
 
     public function getCourseAnnouncements($userID)
     {
-        $this->db=new DBController;
+        $this->db = DBController::getInstance();
+      
+        $qry="SELECT announcementText FROM announcements JOIN student_courses ON announcements.courseID = student_courses.courseID WHERE student_courses.studentId = $userID;";
+        $result = $this->db->select($qry);
 
-        if($this->db->openConnection())
-        {
-            $qry="SELECT announcementText FROM announcements JOIN student_courses ON announcements.courseID = student_courses.courseID WHERE student_courses.studentId = $userID;";
-            $result = $this->db->select($qry);
-
-            $this->db->closeConnection();
-            return $result;
-        }
-        else
-        {
-            echo "Error in Database Connection";
-            return false; 
-        }
+        return $result;
+        
     }
 
 }

@@ -42,7 +42,7 @@
         }
 
         $response = $_POST[$fieldName];
-        if($questionsController->insertEvaluationResonse($_POST['questionID'], $_SESSION['teacherIDToEvaluate'], $response))
+        if($questionsController->insertEvaluationResponse($_POST['questionID'], $_SESSION['teacherIDToEvaluate'], $response))
         {
             header("Location: evaluateTeachers.php");
         }

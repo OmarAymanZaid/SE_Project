@@ -7,6 +7,27 @@
         private $dbPassword = "";
         private $dbName = "learning";
         private $connection;
+        private static $instance;
+
+
+        private function __construct()
+        {
+            $this->openConnection();
+        }
+
+        private function __clone() {}
+
+        public function __wakeup() {}
+
+        public static function getInstance()
+        {
+            if (self::$instance === null) 
+            {
+                self::$instance = new DBController();
+            }
+            return self::$instance;
+        }
+
 
         public function openConnection()
         {

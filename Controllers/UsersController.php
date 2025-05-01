@@ -8,60 +8,35 @@ class UsersController
 
     public function getUser($userID)
     {
-        $this->db = new DBController;
+        $this->db = DBController::getInstance();
 
-        if($this->db->openConnection())
-        {
-            $qry = "SELECT * FROM users WHERE ID = $userID";
-            $result = $this->db->select($qry);
+        $qry = "SELECT * FROM users WHERE ID = $userID";
+        $result = $this->db->select($qry);
 
-            $this->db->closeConnection();
-            return $result;
-        }
-        else
-        {
-            echo "Error In Database Connection";
-            return false;
-        }
+        return $result;
 
     }
 
     public function getAllTeachers()
     {
-        $this->db = new DBController;
+        $this->db = DBController::getInstance();
+        
+        $qry    = "SELECT ID, name, email, roleID, image FROM users WHERE roleID = " . TEACHER_ROLE . ";";
+        $result = $this->db->select($qry);
 
-        if($this->db->openConnection())
-        {
-            $qry    = "SELECT ID, name, email, roleID, image FROM users WHERE roleID = " . TEACHER_ROLE . ";";
-            $result = $this->db->select($qry);
-
-            $this->db->closeConnection();
-            return $result;
-        }
-        else
-        {
-            echo "Error in database connection";
-            return false;
-        }
+        return $result;
+      
     }
 
     public function getAllTeachersExcept($userID)
     {
-        $this->db = new DBController;
+        $this->db = DBController::getInstance();
 
-        if($this->db->openConnection())
-        {
-            $qry    = "SELECT ID, name, email, roleID, image FROM users WHERE roleID = " . TEACHER_ROLE . " and ID != $userID;";
-            $result = $this->db->select($qry);
+        $qry    = "SELECT ID, name, email, roleID, image FROM users WHERE roleID = " . TEACHER_ROLE . " and ID != $userID;";
+        $result = $this->db->select($qry);
 
-            $this->db->closeConnection();
-            return $result;
-        }
-        else
-        {
-            echo "Error in database connection";
-            return false;
-        }
+        return $result;
+
     }
 
 }

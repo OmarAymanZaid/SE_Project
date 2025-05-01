@@ -8,40 +8,24 @@ require_once '../../Controllers/DBController.php';
 
         public function getQuestions()
         {
-            $this->db=new DBController;
+            $this->db = DBController::getInstance();
 
-            if($this->db->openConnection())
-            {
-                $qry="SELECT * from evaluation_questions";
-                $result = $this->db->select($qry);
+            $qry="SELECT * from evaluation_questions";
+            $result = $this->db->select($qry);
 
-                $this->db->closeConnection();
-                return $result;
-            }
-            else
-            {
-                echo "Error in Database Connection";
-                return false; 
-            }
+            return $result;
+   
         }
 
-        public function insertEvaluationResonse($questionID, $teacherID, $response)
+        public function insertEvaluationResponse($questionID, $teacherID, $response)
         {
-            $this->db=new DBController;
+            $this->db = DBController::getInstance();
+         
+            $qry = "INSERT INTO evaluation_responses VALUES('', $questionID, $teacherID, $response);";
+            $result = $this->db->insert($qry);
 
-            if($this->db->openConnection())
-            {
-                $qry = "INSERT INTO evaluation_responses VALUES('', $questionID, $teacherID, $response);";
-                $result = $this->db->insert($qry);
+            return $result;
 
-                $this->db->closeConnection();
-                return $result;
-            }
-            else
-            {
-                echo "Error in Database Connection";
-                return false; 
-            }
         }
    }
 
