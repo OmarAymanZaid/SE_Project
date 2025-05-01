@@ -40,6 +40,14 @@
                     </li>
 
 
+                    <li class="pc-item">
+                        <a href="chooseCourseAssignments.php" class="pc-link">
+                            <span class="pc-micon"><i class="ti ti-notebook"></i></span>
+                            <span class="pc-mtext">Assignments</span>
+                        </a>
+                    </li>
+
+
                 </ul>
             </div>
         </div>

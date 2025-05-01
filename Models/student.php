@@ -49,6 +49,26 @@ class Student extends User
         }
     }
 
+    public function uploadAssignment($studentID ,$courseID ,$assignmentName, $location)
+    {
+        $this->db = new DBController;
+
+        if($this->db->openConnection())
+        {
+
+            $qry = "INSERT INTO assignments VALUES('',$studentID ,$courseID, '$assignmentName', '$location')";
+            $result = $this->db->insert($qry);
+
+            $this->db->closeConnection();
+            return $result;
+        }
+        else
+        {
+            echo "Error In Database Connection";
+            return false;
+        }
+    }
+
 }
 
 ?>

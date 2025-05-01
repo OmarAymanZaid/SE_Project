@@ -34,7 +34,7 @@
 
                     <li class="pc-item">
                         <a href="assignments.php" class="pc-link">
-                            <span class="pc-micon"><i class="ti ti-clipboard-check"></i></span>
+                            <span class="pc-micon"><i class="ti ti-notebook"></i></span>
                             <span class="pc-mtext">Assignments</span>
                         </a>
                     </li>

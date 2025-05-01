@@ -26,6 +26,26 @@ class FileController
         }
     }
 
+
+    public function getCourseAssignments($courseID)
+    {
+        $this->db=new DBController;
+
+        if($this->db->openConnection())
+        {
+            $qry="SELECT u.name as sentBy, a.name as name, a.location FROM assignments AS a JOIN users AS u ON a.studentID = u.ID WHERE courseID = $courseID;";
+            $result = $this->db->select($qry);
+
+            $this->db->closeConnection();
+            return $result;
+        }
+        else
+        {
+            echo "Error in Database Connection";
+            return false; 
+        }
+    }
+
 }
 
 ?>

@@ -4,6 +4,7 @@
     require_once '../../Controllers/SessionController.php';
     require_once '../../Controllers/ConstantsController.php';
     require_once '../../Controllers/CourseController.php';
+    require_once '../../Controllers/FileController.php';
     require_once '../../Controllers/AuthController.php';
 
 
@@ -13,7 +14,7 @@
     }
 
 
-    $userRole              = "student";
+    $userRole              = "teacher";
     $auth                  = new AuthController;    
     $auth->redirectIfUnathuorized($userRole);
 
@@ -25,8 +26,8 @@
         $auth->logout();
     }
 
-    $courseController = new CourseController;
-    $courses = $courseController->getCoursesEnrolledByStudent($_SESSION["userID"]);
+    $fileController = new FileController;
+    $assignments = $fileController->getCourseAssignments($_GET['courseID']);
 
 ?>
 
@@ -41,40 +42,40 @@
 
 <body>
 
-    <?php include 'navStudent.php'; ?>
+    <?php include 'navTeacher.php'; ?>
 
-    <?php include 'studentHeader.php'; ?>
+    <?php include '../reusable/actualReusableHeader.php'; ?>
 
     <div class="pc-container">
 
         <div class="card-body">
             
-            <?php if(count($courses) == 0 ): ?>
-                <h2 class="container" style="padding-top: 15px;">No Enrolled Courses</h2>
+            <?php if(count($assignments) == 0 ): ?>
+                <h2 class="container" style="padding-top: 15px;">No Assignments Available</h2>
             
             <?php else: ?>
-                <h3 style="padding:10px;">courses</h3>
+                <h3 style="padding:10px;">Students Assignments</h3>
                 <div class="dt-responsive table-responsive">
                     <table id="multi-colum-dt" class="table table-striped table-bordered nowrap" style="text-align:center;">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Description</th>
+                        <th>Sent By</th>
+                        <th>Name</th>
+                        <th>Download</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         
-                            foreach($courses as $course)
+                            foreach($assignments as $assignment)
                             {
                             ?>
                                 <tr>
-                                    <td><?php echo $course['name']; ?></td>
-                                    <td><?php echo $course['description']; ?></td>
-
+                                    <td><?php echo $assignment['sentBy']; ?></td>
+                                    <td><?php echo $assignment['name']; ?></td>
                                     <td>
-                                        <a href="uploadAssignment.php?courseID=<?= $course['ID']?>&courseName=<?=$course['name']?>" class="btn btn-outline-primary">
-                                            Upload
+                                        <a href="<?= $assignment['location'] ?>" download class="btn btn-primary">
+                                            download
                                         </a>
                                     </td>
 
