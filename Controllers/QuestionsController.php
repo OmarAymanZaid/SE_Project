@@ -17,11 +17,11 @@ require_once '../../Controllers/DBController.php';
    
         }
 
-        public function insertEvaluationResponse($questionID, $teacherID, $response)
+        public function insertEvaluationResponse($teacherID, $response)
         {
             $this->db = DBController::getInstance();
          
-            $qry = "INSERT INTO evaluation_responses VALUES('', $questionID, $teacherID, $response);";
+            $qry = "INSERT INTO evaluation_responses VALUES('', $teacherID, $response);";
             $result = $this->db->insert($qry);
 
             return $result;

@@ -63,8 +63,7 @@
                             <div class="card-body">
                                 <h5 class="card-title"> <?= $teacher['name'] ?> </h5>
 
-                                <?php $_SESSION['teacherIDToEvaluate'] = $teacher['ID'] ?>
-                                <a href="evaluationForm.php" class="btn btn-outline-primary">
+                                <a href="evaluationForm.php?teacherID=<?=$teacher['ID']?>" class="btn btn-outline-primary">
                                     <i class='ti ti-star' style="margin-right: 6px;"></i>Evaluate
                                 </a>
 

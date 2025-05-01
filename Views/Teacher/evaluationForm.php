@@ -25,13 +25,17 @@
   $questionsController = new QuestionsController;
   $questions = $questionsController->getQuestions();
 
+  if(isset($_GET['teacherID']))
+  {
+    $teacherID = $_GET['teacherID'];
+  }
 
   if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit']))
   {
     $resposnes = [];
     
     $questionsCount = count($questions);
-    for($i = 1; $i<$questionsCount; $i++)
+    for($i = 1; $i<=$questionsCount; $i++)
     {
         $fieldName = "question" . $i;
 
@@ -42,7 +46,7 @@
         }
 
         $response = $_POST[$fieldName];
-        if($questionsController->insertEvaluationResponse($_POST['questionID'], $_SESSION['teacherIDToEvaluate'], $response))
+        if($questionsController->insertEvaluationResponse($_POST['teacherID'], $response))
         {
             header("Location: evaluatePeers.php");
         }
@@ -80,7 +84,9 @@
                 <?php $i = 1; foreach($questions as $question): ?>
                     <div style="padding: 15px; border: 1px grey solid;">
                         <p style="font-size: 20px"><?=$i?> . <?=$question["questionText"]?></p>
-                        <input type="hidden" name="questionID" value="<?=$question["ID"]?>">
+
+                        <input type="hidden" name="teacherID" value="<?=$teacherID?>">
+
                         <div class="form-group mb-3 d-flex justify-content-evenly align-items-center">
                             <span>
                                 <label class="form-label">Strongly Disagree</label>
