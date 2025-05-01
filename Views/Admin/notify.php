@@ -19,6 +19,11 @@ $auth->redirectIfUnathuorized($userRole);
 
 $errMsg = "" ;
 
+if(isset($_GET['userID']))
+{
+    $userID = $_GET['userID'];
+}
+
 if(isset($_POST['notification']))
 {
     if(!empty($_POST['notification']))
@@ -26,7 +31,7 @@ if(isset($_POST['notification']))
         $admin    = new Admin;
         $notification = new Notification;
     
-        $notification->userID = $_SESSION['userIDToNotify'];
+        $notification->userID = $_POST['userIDToNotify'];
         $notification->notificationText = $_POST['notification'];
     
         if($admin->addNotification($notification))
@@ -68,6 +73,7 @@ if(isset($_POST['notification']))
                 </div>
 
                 <div class="form-group mb-3">
+                    <input type="hidden" class="form-control" name="userIDToNotify" value="<?=$userID?>">
                     <input type="text" class="form-control" placeholder="notification..." name="notification">
                 </div>
 

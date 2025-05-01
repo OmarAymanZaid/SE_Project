@@ -154,8 +154,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <?php $_SESSION['userIDToNotify'] = $user['ID']; ?>
-                                        <a href="notify.php" class="btn btn-outline-warning" name="notify">
+                                        <a href="notify.php?userID=<?=$user['ID']?>" class="btn btn-outline-warning" name="notify">
                                             <i class="ti ti-bell" ></i>
                                             Notify
                                         </a>

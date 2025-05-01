@@ -9,7 +9,7 @@ class FileController
 
     public function getCourseMaterial($courseID)
     {
-        $this->db=new DBController;
+        $this->db = DBController::getInstance();
    
         $qry="SELECT * FROM material WHERE courseID = $courseID;";
         $result = $this->db->select($qry);
