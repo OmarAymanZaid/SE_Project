@@ -11,81 +11,46 @@ class Teacher extends User
 
     public function assignForCourse($courseID, $userID)
     {
-        $this->db = new DBController;
+        $this->db = DBController::getInstance();
 
-        if($this->db->openConnection())
-        {
+        $qry = "INSERT INTO teachers_courses VALUES($userID, $courseID)";
+        $result = $this->db->insert($qry);
 
-            $qry = "INSERT INTO teachers_courses VALUES($userID, $courseID)";
-            $result = $this->db->insert($qry);
-
-            $this->db->closeConnection();
-            return $result;
-        }
-        else
-        {
-            echo "Error In Database Connection";
-            return false;
-        }
+        return $result;
+    
     }
 
     public function cancelCourse($courseID, $teacherID)
     {
-        $this->db = new DBController;
+        $this->db = DBController::getInstance();
 
-        if($this->db->openConnection())
-        {
+        $qry = "DELETE FROM teachers_courses WHERE courseID = $courseID AND $teacherID = $teacherID";
+        $result = $this->db->delete($qry);
 
-            $qry = "DELETE FROM teachers_courses WHERE courseID = $courseID AND $teacherID = $teacherID";
-            $result = $this->db->delete($qry);
-
-            $this->db->closeConnection();
-            return $result;
-        }
-        else
-        {
-            echo "Error In Database Connection";
-            return false;
-        }
+        return $result;
+  
     }
 
     public function uploadMaterial($courseID ,$materialName, $location)
     {
-        $this->db = new DBController;
+        $this->db = DBController::getInstance();
 
-        if($this->db->openConnection())
-        {
+        $qry = "INSERT INTO material VALUES('', $courseID, '$materialName', '$location')";
+        $result = $this->db->insert($qry);
 
-            $qry = "INSERT INTO material VALUES('', $courseID, '$materialName', '$location')";
-            $result = $this->db->insert($qry);
-
-            $this->db->closeConnection();
-            return $result;
-        }
-        else
-        {
-            echo "Error In Database Connection";
-            return false;
-        }
+        return $result;
+     
     }
 
     public function sendAnnouncement(Announcement $announcement)
     {
-        $this->db = new DBController;
+        $this->db = DBController::getInstance();
 
-        if($this->db->openConnection())
-        {
-            $qry    = "INSERT INTO announcements VALUES('', $announcement->courseID,'$announcement->announcementText');";
-            $result = $this->db->insert($qry); 
+        $qry    = "INSERT INTO announcements VALUES('', $announcement->courseID,'$announcement->announcementText');";
+        $result = $this->db->insert($qry); 
 
-            $this->db->closeConnection();
-            return $result;
-        }
-        else
-        {
-            echo 'Error In Connection';
-            return false;
-        }
+        return $result;
+
     }
 
 }

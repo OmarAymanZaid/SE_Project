@@ -15,9 +15,9 @@
             $this->openConnection();
         }
 
-        private function __clone() {}
+        // private function __clone() {}
 
-        public function __wakeup() {}
+        // public function __wakeup() {}
 
         public static function getInstance()
         {
