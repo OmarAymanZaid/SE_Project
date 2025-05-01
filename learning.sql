@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2025 at 10:02 PM
+-- Generation Time: May 01, 2025 at 11:19 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,46 @@ SET time_zone = "+00:00";
 --
 -- Database: `learning`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `announcements`
+--
+
+CREATE TABLE `announcements` (
+  `ID` int(11) NOT NULL,
+  `courseID` int(11) NOT NULL,
+  `announcementText` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `announcements`
+--
+
+INSERT INTO `announcements` (`ID`, `courseID`, `announcementText`) VALUES
+(1, 7, 'Calculus is very gamid tenneen !!');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `assignments`
+--
+
+CREATE TABLE `assignments` (
+  `ID` int(11) NOT NULL,
+  `studentID` int(11) NOT NULL,
+  `courseID` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `location` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `assignments`
+--
+
+INSERT INTO `assignments` (`ID`, `studentID`, `courseID`, `name`, `location`) VALUES
+(2, 15, 7, 'albert camus.jpeg', '../files/assignments/10-31-50 albert camus.jpeg');
 
 -- --------------------------------------------------------
 
@@ -78,7 +118,8 @@ CREATE TABLE `evaluation_questions` (
 
 INSERT INTO `evaluation_questions` (`ID`, `questionText`) VALUES
 (7, 'Does the TA come in time?'),
-(9, 'Does the TA listen attentively?');
+(9, 'Does the TA listen attentively?'),
+(10, 'Is the TA 7ilow we gameel we bsimsm?');
 
 -- --------------------------------------------------------
 
@@ -92,6 +133,42 @@ CREATE TABLE `evaluation_responses` (
   `teacherID` int(11) NOT NULL,
   `selectedOption` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `evaluation_responses`
+--
+
+INSERT INTO `evaluation_responses` (`ID`, `questionID`, `teacherID`, `selectedOption`) VALUES
+(1, 10, 24, 5),
+(2, 10, 24, 5),
+(3, 10, 24, 5),
+(4, 10, 24, 5),
+(5, 10, 26, 2),
+(6, 10, 26, 4),
+(7, 10, 26, 2),
+(8, 10, 26, 4),
+(9, 10, 26, 4),
+(10, 10, 26, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `material`
+--
+
+CREATE TABLE `material` (
+  `ID` int(11) NOT NULL,
+  `courseID` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `location` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `material`
+--
+
+INSERT INTO `material` (`ID`, `courseID`, `name`, `location`) VALUES
+(6, 7, '[Calculus]Rules.jpg', '../files/material/04-54-52 Rules.jpg');
 
 -- --------------------------------------------------------
 
@@ -135,6 +212,24 @@ INSERT INTO `roles` (`ID`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `student_courses`
+--
+
+CREATE TABLE `student_courses` (
+  `courseID` int(11) NOT NULL,
+  `studentID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `student_courses`
+--
+
+INSERT INTO `student_courses` (`courseID`, `studentID`) VALUES
+(7, 15);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `teachers_courses`
 --
 
@@ -148,7 +243,7 @@ CREATE TABLE `teachers_courses` (
 --
 
 INSERT INTO `teachers_courses` (`teacherID`, `courseID`) VALUES
-(14, 7);
+(23, 7);
 
 -- --------------------------------------------------------
 
@@ -161,25 +256,40 @@ CREATE TABLE `users` (
   `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `password` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `roleID` int(11) NOT NULL
+  `roleID` int(11) NOT NULL,
+  `image` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`ID`, `name`, `email`, `password`, `roleID`) VALUES
-(14, 'Omar Ayman', 'omarayman5555@gmail.com', '5555', 1),
-(15, 'Albert Camus', 'strangeralbercamus@gmail.com', 'the stranger', 2),
-(20, 'Moataz', 'Moataz@bitingana.com', '5555', 1),
-(21, 'Moaz', 'Moaz@gmail.com', '5555', 1),
-(22, 'student3', 'student3@ay7aga.com', '3333', 2),
-(23, 'Teacher1', 'teacher1@gmail.com', 'teacher1', 3),
-(24, 'Teacher2', 'teacher2@gmail.com', 'teacher2', 3);
+INSERT INTO `users` (`ID`, `name`, `email`, `password`, `roleID`, `image`) VALUES
+(14, 'Omar Ayman', 'omarayman5555@gmail.com', '5555', 1, '../images/anonymousIcon.jpg'),
+(15, 'Albert Camus', 'strangeralbercamus@gmail.com', 'the stranger', 2, '../images/09-43-38albert camus.jpeg'),
+(20, 'Moataz', 'Moataz@bitingana.com', '5555', 1, '../images/anonymousIcon.jpg'),
+(21, 'Moaz', 'Moaz@gmail.com', '5555', 1, '../images/anonymousIcon.jpg'),
+(22, 'student3', 'student3@ay7aga.com', '3333', 2, '../images/anonymousIcon.jpg'),
+(23, 'Teacher1', 'teacher1@gmail.com', 'teacher1', 3, '../images/anonymousIcon.jpg'),
+(24, 'Teacher2', 'teacher2@gmail.com', 'teacher2', 3, '../images/anonymousIcon.jpg'),
+(25, 'Teacher3', 'teacher3@gmail.com', 'teacher3', 3, '../images/anonymousIcon.jpg'),
+(26, 'Teacher4', 'teacher4@gmail.com', 'teacher4', 3, '../images/anonymousIcon.jpg');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `announcements`
+--
+ALTER TABLE `announcements`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `assignments`
+--
+ALTER TABLE `assignments`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `categories`
@@ -208,6 +318,12 @@ ALTER TABLE `evaluation_responses`
   ADD KEY `questionID` (`questionID`);
 
 --
+-- Indexes for table `material`
+--
+ALTER TABLE `material`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `notifications`
 --
 ALTER TABLE `notifications`
@@ -219,6 +335,13 @@ ALTER TABLE `notifications`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `student_courses`
+--
+ALTER TABLE `student_courses`
+  ADD PRIMARY KEY (`courseID`,`studentID`),
+  ADD KEY `studentID` (`studentID`);
 
 --
 -- Indexes for table `teachers_courses`
@@ -239,6 +362,18 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `announcements`
+--
+ALTER TABLE `announcements`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `assignments`
+--
+ALTER TABLE `assignments`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
@@ -254,13 +389,19 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `evaluation_questions`
 --
 ALTER TABLE `evaluation_questions`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `evaluation_responses`
 --
 ALTER TABLE `evaluation_responses`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `material`
+--
+ALTER TABLE `material`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -278,7 +419,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Constraints for dumped tables
@@ -301,6 +442,13 @@ ALTER TABLE `evaluation_responses`
 --
 ALTER TABLE `notifications`
   ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`ID`);
+
+--
+-- Constraints for table `student_courses`
+--
+ALTER TABLE `student_courses`
+  ADD CONSTRAINT `student_courses_ibfk_1` FOREIGN KEY (`courseID`) REFERENCES `courses` (`ID`),
+  ADD CONSTRAINT `student_courses_ibfk_2` FOREIGN KEY (`studentID`) REFERENCES `users` (`ID`);
 
 --
 -- Constraints for table `teachers_courses`
