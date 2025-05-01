@@ -18,7 +18,6 @@
 
 
     $admin = new Admin;
-    $users = $admin->viewAllUsers();
 
     $deleteMsg = '';
     if (isset($_POST["delete"])) 
@@ -28,7 +27,7 @@
           if ($admin->deleteUser($_POST["userID"])) 
           {
             $deleteMsg = true;
-            $users = $admin->viewAllUsers();
+            //$users = $admin->viewAllUsers($_SESSION['userID']);
           }
         }
     }
@@ -47,10 +46,10 @@
           else
             $role = TEACHER_ROLE;
 
-          if ($admin->editUserRole($_POST["userID"], $role))
+          if ($admin->editUserRole($_POST["userID"],$_POST["currentRole"] , $role))
           {
             $editRoleMsg = true;
-            $users = $admin->viewAllUsers();
+            //$users = $admin->viewAllUsers($_SESSION['userID']);
           }
 
         }
@@ -60,6 +59,8 @@
     {
         $auth->logout();
     }
+
+    $users = $admin->viewAllUsers($_SESSION['userID']);
 
 ?>
 
@@ -147,6 +148,7 @@
                                                     </div>
                                                 </div>
                                                 <input type="hidden" value = "<?=$user['ID'];?>" name="userID">
+                                                <input type="hidden" value = "<?=$user['roleID'];?>" name="currentRole">
                                                 <button type="submit" class="btn btn-outline-danger" name="editRole">
                                                     Edit
                                                 </button>

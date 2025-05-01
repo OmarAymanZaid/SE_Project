@@ -9,11 +9,11 @@ class Admin extends User
 {
     protected $db;
 
-    public function viewAllUsers()
+    public function viewAllUsers($adminID)
     {
         $this->db = DBController::getInstance();
       
-        $qry = "select ID, name, email, roleID from users";
+        $qry = "SELECT ID, name, email, roleID FROM users WHERE ID != $adminID";
         $result = $this->db->select($qry);
     
         return $result;
@@ -44,14 +44,30 @@ class Admin extends User
     }
 
 
-    public function editUserRole($userID, $role)
+    public function editUserRole($userID, $currentRole, $role)
     {
         $this->db = DBController::getInstance();
 
-        $qry = "UPDATE users SET roleID = $role WHERE ID =$userID;";
-        $result = $this->db->update($qry);
-    
-        return $result;
+        $qry1 = "UPDATE users SET roleID = $role WHERE ID = $userID;";
+        $result1 = $this->db->update($qry1);
+
+
+        if($currentRole == STUDENT_ROLE)
+        {
+            $qry2 = "DELETE FROM student_courses WHERE studentID = $userID";
+            $result2 = $this->db->update($qry2);
+        }
+        else if($currentRole == TEACHER_ROLE)
+        {
+            $qry2 = "DELETE FROM teachers_courses WHERE teacherID = $userID";
+            $result2 = $this->db->update($qry2);
+        }
+        else
+        {
+            $result2 = true;
+        }
+
+        return $result1 && $result2;
     
     }
 

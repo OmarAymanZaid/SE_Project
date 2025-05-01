@@ -72,7 +72,6 @@ require_once '../../Controllers/DBController.php';
             $qry = "SELECT * from courses LEFT JOIN teachers_courses ON courses.ID = teachers_courses.courseID WHERE (teacherID != $teacherID OR teacherID IS NULL) AND courses.ID NOT IN (SELECT courseID FROM teachers_courses WHERE teacherID = $teacherID);";
             $result = $this->db->select($qry);
         
-            $this->db->closeConnection();
             return $result;
 
         }
