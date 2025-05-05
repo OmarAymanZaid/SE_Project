@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2025 at 11:19 AM
+-- Generation Time: May 05, 2025 at 04:27 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -59,7 +59,8 @@ CREATE TABLE `assignments` (
 --
 
 INSERT INTO `assignments` (`ID`, `studentID`, `courseID`, `name`, `location`) VALUES
-(2, 15, 7, 'albert camus.jpeg', '../files/assignments/10-31-50 albert camus.jpeg');
+(2, 15, 7, 'albert camus.jpeg', '../files/assignments/10-31-50 albert camus.jpeg'),
+(3, 15, 7, 'Rules.jpg', '../files/assignments/12-34-35 Rules.jpg');
 
 -- --------------------------------------------------------
 
@@ -99,7 +100,8 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`ID`, `name`, `description`, `image`, `categoryID`) VALUES
-(7, 'Calculus', 'intermediate calculus course', '../images/08-25-48calculus.jpg', 2);
+(7, 'Calculus', 'intermediate calculus course', '../images/08-25-48calculus.jpg', 2),
+(9, 'Introduction to computer science', 'A course that is very mohim tneen A5ir 7aga giddan 5alis that helps you navigate the computer science maze', '../images/12-52-40computer science.jpeg', 1);
 
 -- --------------------------------------------------------
 
@@ -117,9 +119,7 @@ CREATE TABLE `evaluation_questions` (
 --
 
 INSERT INTO `evaluation_questions` (`ID`, `questionText`) VALUES
-(7, 'Does the TA come in time?'),
-(9, 'Does the TA listen attentively?'),
-(10, 'Is the TA 7ilow we gameel we bsimsm?');
+(12, 'Does the TA come in time?');
 
 -- --------------------------------------------------------
 
@@ -129,7 +129,6 @@ INSERT INTO `evaluation_questions` (`ID`, `questionText`) VALUES
 
 CREATE TABLE `evaluation_responses` (
   `ID` int(11) NOT NULL,
-  `questionID` int(11) NOT NULL,
   `teacherID` int(11) NOT NULL,
   `selectedOption` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -138,17 +137,15 @@ CREATE TABLE `evaluation_responses` (
 -- Dumping data for table `evaluation_responses`
 --
 
-INSERT INTO `evaluation_responses` (`ID`, `questionID`, `teacherID`, `selectedOption`) VALUES
-(1, 10, 24, 5),
-(2, 10, 24, 5),
-(3, 10, 24, 5),
-(4, 10, 24, 5),
-(5, 10, 26, 2),
-(6, 10, 26, 4),
-(7, 10, 26, 2),
-(8, 10, 26, 4),
-(9, 10, 26, 4),
-(10, 10, 26, 4);
+INSERT INTO `evaluation_responses` (`ID`, `teacherID`, `selectedOption`) VALUES
+(17, 23, 5),
+(18, 23, 5),
+(19, 23, 5),
+(20, 23, 5),
+(21, 23, 5),
+(22, 24, 5),
+(23, 24, 3),
+(24, 15, 2);
 
 -- --------------------------------------------------------
 
@@ -187,7 +184,9 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`ID`, `userID`, `notificationText`) VALUES
-(1, 20, 'Hello !');
+(1, 20, 'Hello !'),
+(3, 23, 'Hello !'),
+(4, 27, 'Hello Ahmed !');
 
 -- --------------------------------------------------------
 
@@ -220,13 +219,6 @@ CREATE TABLE `student_courses` (
   `studentID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `student_courses`
---
-
-INSERT INTO `student_courses` (`courseID`, `studentID`) VALUES
-(7, 15);
-
 -- --------------------------------------------------------
 
 --
@@ -243,7 +235,8 @@ CREATE TABLE `teachers_courses` (
 --
 
 INSERT INTO `teachers_courses` (`teacherID`, `courseID`) VALUES
-(23, 7);
+(23, 7),
+(27, 9);
 
 -- --------------------------------------------------------
 
@@ -266,14 +259,14 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`ID`, `name`, `email`, `password`, `roleID`, `image`) VALUES
 (14, 'Omar Ayman', 'omarayman5555@gmail.com', '5555', 1, '../images/anonymousIcon.jpg'),
-(15, 'Albert Camus', 'strangeralbercamus@gmail.com', 'the stranger', 2, '../images/09-43-38albert camus.jpeg'),
+(15, 'Albert Camus', 'strangeralbercamus@gmail.com', 'the stranger', 3, '../images/12-35-21albert camus.jpeg'),
 (20, 'Moataz', 'Moataz@bitingana.com', '5555', 1, '../images/anonymousIcon.jpg'),
 (21, 'Moaz', 'Moaz@gmail.com', '5555', 1, '../images/anonymousIcon.jpg'),
 (22, 'student3', 'student3@ay7aga.com', '3333', 2, '../images/anonymousIcon.jpg'),
 (23, 'Teacher1', 'teacher1@gmail.com', 'teacher1', 3, '../images/anonymousIcon.jpg'),
-(24, 'Teacher2', 'teacher2@gmail.com', 'teacher2', 3, '../images/anonymousIcon.jpg'),
-(25, 'Teacher3', 'teacher3@gmail.com', 'teacher3', 3, '../images/anonymousIcon.jpg'),
-(26, 'Teacher4', 'teacher4@gmail.com', 'teacher4', 3, '../images/anonymousIcon.jpg');
+(27, 'Ahmed Samir', 'ahmedsamir@gmail.com', 'ahmedsamir', 3, '../images/anonymousIcon.jpg'),
+(28, 'Omaromar', 'omaromar@gmail.com', 'omaromar', 2, '../images/anonymousIcon.jpg'),
+(29, 'TeacherT', 'teacherT@gmail.com', 'TeacherT', 3, '../images/anonymousIcon.jpg');
 
 --
 -- Indexes for dumped tables
@@ -314,8 +307,7 @@ ALTER TABLE `evaluation_questions`
 -- Indexes for table `evaluation_responses`
 --
 ALTER TABLE `evaluation_responses`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `questionID` (`questionID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `material`
@@ -328,7 +320,7 @@ ALTER TABLE `material`
 --
 ALTER TABLE `notifications`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `userID` (`userID`);
+  ADD KEY `notifications_ibfk_1` (`userID`);
 
 --
 -- Indexes for table `roles`
@@ -371,7 +363,7 @@ ALTER TABLE `announcements`
 -- AUTO_INCREMENT for table `assignments`
 --
 ALTER TABLE `assignments`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -383,19 +375,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `evaluation_questions`
 --
 ALTER TABLE `evaluation_questions`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `evaluation_responses`
 --
 ALTER TABLE `evaluation_responses`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `material`
@@ -407,7 +399,7 @@ ALTER TABLE `material`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -419,7 +411,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- Constraints for dumped tables
@@ -432,16 +424,10 @@ ALTER TABLE `courses`
   ADD CONSTRAINT `courses_ibfk_1` FOREIGN KEY (`categoryID`) REFERENCES `categories` (`ID`);
 
 --
--- Constraints for table `evaluation_responses`
---
-ALTER TABLE `evaluation_responses`
-  ADD CONSTRAINT `evaluation_responses_ibfk_1` FOREIGN KEY (`questionID`) REFERENCES `evaluation_questions` (`ID`);
-
---
 -- Constraints for table `notifications`
 --
 ALTER TABLE `notifications`
-  ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`ID`);
+  ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `student_courses`
