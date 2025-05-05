@@ -53,9 +53,18 @@ $courses = $courseController->getAllCourses();
             
             <?php if(count($courses) == 0 ): ?>
                 <h2 class="container" style="padding-top: 15px;">No Courses Available</h2>
+                
+                <div style="padding:10px;">
+                    <a class="btn btn-primary" href="addCourse.php" role="button">Add New Course</a>
+                </div>
             
             <?php else: ?>
                 <h3 style="padding:10px;">Courses</h3>
+
+                <div style="padding:10px;">
+                    <a class="btn btn-primary" href="addCourse.php" role="button">Add New Course</a>
+                </div>
+
                 <div class="row">
                 <?php foreach($courses as $course): ?>
                     <div class="col-md-6 col-xxl-4">
@@ -94,10 +103,6 @@ $courses = $courseController->getAllCourses();
                 </div>
             </div>
         <?php endif; ?>
-
-        <div style="padding:10px;">
-            <a class="btn btn-primary" href="addCourse.php" role="button">Add New Course</a>
-        </div>
 
     </div>
 

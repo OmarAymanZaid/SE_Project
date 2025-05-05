@@ -59,7 +59,7 @@
                 <?php foreach($teachers as $teacher): ?>
                     <div class="col-md-6 col-xxl-4">
                         <div class="card mb-3" style="margin:10px; padding:10px;">
-                            <img class="img-fluid card-img-top" src="../images/anonymousIcon.jpg" alt="Card image cap" style="border: 0.8px grey solid">
+                            <img class="img-fluid card-img-top" src="<?= $teacher['image'] ?>" alt="Card image cap" style="border: 0.8px grey solid">
                             <div class="card-body">
                                 <h5 class="card-title"> <?= $teacher['name'] ?> </h5>
 

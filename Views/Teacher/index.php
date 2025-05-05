@@ -61,9 +61,18 @@
             
             <?php if(count($courses) == 0 ): ?>
                 <h2 class="container" style="padding-top: 15px;">No Assigned Courses</h2>
+                
+                <div style="padding:10px;">
+                    <a class="btn btn-primary" href="assignForCourses.php" role="button">Discover More Courses</a>
+                </div>
             
             <?php else: ?>
                 <h3 style="padding:10px;">Assigned Courses</h3>
+
+                <div style="padding:10px;">
+                    <a class="btn btn-primary" href="assignForCourses.php" role="button">Discover More Courses</a>
+                </div>
+
                 <div class="row">
                 <?php foreach($courses as $course): ?>
                     <div class="col-md-6 col-xxl-4">
@@ -99,10 +108,6 @@
                 </div>
             </div>
         <?php endif; ?>
-
-        <div style="padding:10px;">
-            <a class="btn btn-primary" href="assignForCourses.php" role="button">Discover More Courses</a>
-        </div>
 
     </div>
 

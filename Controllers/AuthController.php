@@ -74,13 +74,14 @@ class AuthController
         else
             $role = TEACHER_ROLE;
 
-        $qry = "insert into users values('' , '$user->name' , '$user->email' , '$user->password' ,'$role')";
+        $qry = "insert into users values('' , '$user->name' , '$user->email' , '$user->password' ,'$role','$user->image')";
         $result = $this->db->insert($qry);
 
         if($result != false)
         {
             $_SESSION['userID'] = $result;
             $_SESSION['userName'] = $user->name;
+            $_SESSION['userImage'] = $user->image;
             if($user->roleID == ADMIN_ROLE)
                 $_SESSION['userRole'] = "admin";
             elseif($user->roleID == STUDENT_ROLE)

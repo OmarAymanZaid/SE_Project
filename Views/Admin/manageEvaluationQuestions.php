@@ -59,9 +59,18 @@ $evaluationQuestions = $questionsController->getQuestions();
             
             <?php if(count($evaluationQuestions) == 0 ): ?>
                 <h2 class="container" style="padding-top: 15px;">No Questions Available</h2>
+
+                <div style="padding:10px;">
+                    <a href="addEvaluationQuestion.php" class="btn btn-primary">Add</a>
+                </div>
             
             <?php else: ?>
                 <h3 style="padding:10px;">Question</h3>
+
+                <div style="padding:10px;">
+                    <a href="addEvaluationQuestion.php" class="btn btn-primary">Add</a>
+                </div>
+
                 <div class="dt-responsive table-responsive">
                     <table id="multi-colum-dt" class="table table-striped table-bordered nowrap" style="text-align:center;">
                     <thead>
@@ -114,9 +123,7 @@ $evaluationQuestions = $questionsController->getQuestions();
 
         <?php endif;?>
 
-        <div style="padding:10px;">
-        <a href="addEvaluationQuestion.php" class="btn btn-outline-primary">Add</a>
-         </div>
+
 
     </div>
 

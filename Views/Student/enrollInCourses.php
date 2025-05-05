@@ -64,26 +64,27 @@
             
             <?php else: ?>
                 <h3 style="padding:10px;">Courses</h3>
-                <div class="row">
-                <?php foreach($courses as $course): ?>
-                    <div class="col-md-6 col-xxl-4">
-                        <div class="card mb-3" style="margin:10px; padding:10px;">
-                            <img class="img-fluid card-img-top" src="<?= $course['image'] ?>"
-                                alt="Card image cap" style="border: 0.8px grey solid">
-                            <div class="card-body">
-                                <h5 class="card-title"> <?= $course['name'] ?> </h5>
-                                <p class="card-text"> <?= $course['description'] ?> </p>
 
-                                <form action="enrollInCourses.php" method="post">
-                                        <input type="hidden" name="courseID" value="<?php echo $course['ID'] ?>">
-                                        <button type="submit" class="btn btn-outline-primary" name="enroll"><i class='ti ti-layout-grid-add' style="margin-right: 6px;"></i>Enroll</button>
-                                </form>    
+                <div class="row">
+                    <?php foreach($courses as $course): ?>
+                        <div class="col-md-6 col-xxl-4">
+                            <div class="card mb-3" style="margin:10px; padding:10px;">
+                                <img class="img-fluid card-img-top" src="<?= $course['image'] ?>"
+                                    alt="Card image cap" style="border: 0.8px grey solid">
+                                <div class="card-body">
+                                    <h5 class="card-title"> <?= $course['name'] ?> </h5>
+                                    <p class="card-text"> <?= $course['description'] ?> </p>
+
+                                    <form action="enrollInCourses.php" method="post">
+                                            <input type="hidden" name="courseID" value="<?php echo $course['ID'] ?>">
+                                            <button type="submit" class="btn btn-outline-primary" name="enroll"><i class='ti ti-layout-grid-add' style="margin-right: 6px;"></i>Enroll</button>
+                                    </form>    
+                                </div>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
                 </div>
-                <?php endif;?>
+            <?php endif;?>
 
         </div>
 

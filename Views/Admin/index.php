@@ -27,7 +27,6 @@
           if ($admin->deleteUser($_POST["userID"])) 
           {
             $deleteMsg = true;
-            //$users = $admin->viewAllUsers($_SESSION['userID']);
           }
         }
     }
@@ -49,7 +48,6 @@
           if ($admin->editUserRole($_POST["userID"],$_POST["currentRole"] , $role))
           {
             $editRoleMsg = true;
-            //$users = $admin->viewAllUsers($_SESSION['userID']);
           }
 
         }
@@ -85,9 +83,18 @@
             
             <?php if(count($users) == 0 ): ?>
                 <h2 class="container" style="padding-top: 15px;">No Users Available</h2>
+                
+                <div style="padding:10px;">
+                    <a class="btn btn-primary" href="addUser.php" role="button">Add New User</a>
+                </div>
             
             <?php else: ?>
                 <h3 style="padding:10px;">Users</h3>
+
+                <div style="padding:10px;">
+                    <a class="btn btn-primary" href="addUser.php" role="button">Add New User</a>
+                </div>
+                
                 <div class="dt-responsive table-responsive">
                     <table id="multi-colum-dt" class="table table-striped table-bordered nowrap" style="text-align:center;">
                     <thead>
@@ -196,10 +203,6 @@
             </div>
 
         <?php endif;?>
-
-        <div style="padding:10px;">
-            <a class="btn btn-primary" href="addUser.php" role="button">Add New User</a>
-         </div>
 
     </div>
 
