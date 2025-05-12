@@ -82,7 +82,7 @@
       <div class="auth-form">
 
         <div class="auth-header">
-          <a href="#"><img src="../assets/images/logo-dark.svg" alt="img"></a>
+          <a href="#"><img src="../assets/images/edusmarto-logo2_2.png" alt="img"></a>
         </div>
 
         <div class="card my-5">

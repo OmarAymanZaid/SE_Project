@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2025 at 04:27 PM
+-- Generation Time: May 12, 2025 at 08:58 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -38,7 +38,9 @@ CREATE TABLE `announcements` (
 --
 
 INSERT INTO `announcements` (`ID`, `courseID`, `announcementText`) VALUES
-(1, 7, 'Calculus is very gamid tenneen !!');
+(1, 7, 'Calculus is very gamid tenneen !!'),
+(2, 9, 'Computer Science ? Amazing !'),
+(3, 11, 'Computer Science ? Amazing !');
 
 -- --------------------------------------------------------
 
@@ -60,7 +62,9 @@ CREATE TABLE `assignments` (
 
 INSERT INTO `assignments` (`ID`, `studentID`, `courseID`, `name`, `location`) VALUES
 (2, 15, 7, 'albert camus.jpeg', '../files/assignments/10-31-50 albert camus.jpeg'),
-(3, 15, 7, 'Rules.jpg', '../files/assignments/12-34-35 Rules.jpg');
+(3, 15, 7, 'Rules.jpg', '../files/assignments/12-34-35 Rules.jpg'),
+(4, 15, 7, '12-52-40computer science.jpeg', '../files/assignments/09-12-53 12-52-40computer science.jpeg'),
+(5, 22, 11, 'Rules.jpg', '../files/assignments/07-51-34 Rules.jpg');
 
 -- --------------------------------------------------------
 
@@ -101,7 +105,7 @@ CREATE TABLE `courses` (
 
 INSERT INTO `courses` (`ID`, `name`, `description`, `image`, `categoryID`) VALUES
 (7, 'Calculus', 'intermediate calculus course', '../images/08-25-48calculus.jpg', 2),
-(9, 'Introduction to computer science', 'A course that is very mohim tneen A5ir 7aga giddan 5alis that helps you navigate the computer science maze', '../images/12-52-40computer science.jpeg', 1);
+(11, 'CS', 'A good course', '../images/07-47-07computer science.jpeg', 1);
 
 -- --------------------------------------------------------
 
@@ -145,7 +149,12 @@ INSERT INTO `evaluation_responses` (`ID`, `teacherID`, `selectedOption`) VALUES
 (21, 23, 5),
 (22, 24, 5),
 (23, 24, 3),
-(24, 15, 2);
+(24, 15, 2),
+(25, 23, 4),
+(26, 23, 5),
+(27, 27, 5),
+(28, 23, 5),
+(29, 36, 5);
 
 -- --------------------------------------------------------
 
@@ -165,7 +174,9 @@ CREATE TABLE `material` (
 --
 
 INSERT INTO `material` (`ID`, `courseID`, `name`, `location`) VALUES
-(6, 7, '[Calculus]Rules.jpg', '../files/material/04-54-52 Rules.jpg');
+(6, 7, '[Calculus]Rules.jpg', '../files/material/04-54-52 Rules.jpg'),
+(7, 7, '[Calculus]12-34-54calculus.jpg', '../files/material/09-26-23 12-34-54calculus.jpg'),
+(8, 11, '[CS]Rules.jpg', '../files/material/08-02-20 Rules.jpg');
 
 -- --------------------------------------------------------
 
@@ -184,9 +195,8 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`ID`, `userID`, `notificationText`) VALUES
-(1, 20, 'Hello !'),
 (3, 23, 'Hello !'),
-(4, 27, 'Hello Ahmed !');
+(5, 21, 'Hello Moaz !');
 
 -- --------------------------------------------------------
 
@@ -219,6 +229,13 @@ CREATE TABLE `student_courses` (
   `studentID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `student_courses`
+--
+
+INSERT INTO `student_courses` (`courseID`, `studentID`) VALUES
+(7, 15);
+
 -- --------------------------------------------------------
 
 --
@@ -236,7 +253,7 @@ CREATE TABLE `teachers_courses` (
 
 INSERT INTO `teachers_courses` (`teacherID`, `courseID`) VALUES
 (23, 7),
-(27, 9);
+(23, 11);
 
 -- --------------------------------------------------------
 
@@ -258,15 +275,15 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`ID`, `name`, `email`, `password`, `roleID`, `image`) VALUES
-(14, 'Omar Ayman', 'omarayman5555@gmail.com', '5555', 1, '../images/anonymousIcon.jpg'),
-(15, 'Albert Camus', 'strangeralbercamus@gmail.com', 'the stranger', 3, '../images/12-35-21albert camus.jpeg'),
-(20, 'Moataz', 'Moataz@bitingana.com', '5555', 1, '../images/anonymousIcon.jpg'),
+(14, 'Omar Ayman', 'omarayman5555@gmail.com', '5555', 1, '../images/08-54-22anonymousIcon.jpg'),
+(15, 'Albert Camus', 'strangeralbercamus@gmail.com', 'the stranger', 2, '../images/09-16-4712-35-21albert camus.jpeg'),
 (21, 'Moaz', 'Moaz@gmail.com', '5555', 1, '../images/anonymousIcon.jpg'),
-(22, 'student3', 'student3@ay7aga.com', '3333', 2, '../images/anonymousIcon.jpg'),
-(23, 'Teacher1', 'teacher1@gmail.com', 'teacher1', 3, '../images/anonymousIcon.jpg'),
-(27, 'Ahmed Samir', 'ahmedsamir@gmail.com', 'ahmedsamir', 3, '../images/anonymousIcon.jpg'),
-(28, 'Omaromar', 'omaromar@gmail.com', 'omaromar', 2, '../images/anonymousIcon.jpg'),
-(29, 'TeacherT', 'teacherT@gmail.com', 'TeacherT', 3, '../images/anonymousIcon.jpg');
+(23, 'Mr.Teacher1', 'teacher1@gmail.com', 'teacher1', 3, '../images/09-25-07anonymousIcon.jpg'),
+(36, 'Teacher2', 'teacher2@gmail.com', 'teacher2', 3, '../images/anonymousIcon.jpg'),
+(38, 'Lev Nikolayevich', 'levnikolayevich@gmail.com', 'theidiot', 2, '../images/anonymousIcon.jpg'),
+(39, 'student1', 'student1@gmail.com', 'student1', 2, '../images/anonymousIcon.jpg'),
+(40, 'Moataz', 'moataz@gmail.com', '5555', 1, '../images/anonymousIcon.jpg'),
+(41, 'Moaz', 'moaz@gmail.com', '5555', 1, '../images/anonymousIcon.jpg');
 
 --
 -- Indexes for dumped tables
@@ -295,7 +312,7 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `courses`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `categoryID` (`categoryID`);
+  ADD KEY `courses_ibfk_1` (`categoryID`);
 
 --
 -- Indexes for table `evaluation_questions`
@@ -333,21 +350,21 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `student_courses`
   ADD PRIMARY KEY (`courseID`,`studentID`),
-  ADD KEY `studentID` (`studentID`);
+  ADD KEY `student_courses_ibfk_2` (`studentID`);
 
 --
 -- Indexes for table `teachers_courses`
 --
 ALTER TABLE `teachers_courses`
   ADD PRIMARY KEY (`teacherID`,`courseID`),
-  ADD KEY `courseID` (`courseID`);
+  ADD KEY `teachers_courses_ibfk_2` (`courseID`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `roleID` (`roleID`);
+  ADD KEY `users_ibfk_1` (`roleID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -357,13 +374,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `announcements`
 --
 ALTER TABLE `announcements`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `assignments`
 --
 ALTER TABLE `assignments`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -375,31 +392,31 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `evaluation_questions`
 --
 ALTER TABLE `evaluation_questions`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `evaluation_responses`
 --
 ALTER TABLE `evaluation_responses`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `material`
 --
 ALTER TABLE `material`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -411,7 +428,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- Constraints for dumped tables
@@ -421,7 +438,7 @@ ALTER TABLE `users`
 -- Constraints for table `courses`
 --
 ALTER TABLE `courses`
-  ADD CONSTRAINT `courses_ibfk_1` FOREIGN KEY (`categoryID`) REFERENCES `categories` (`ID`);
+  ADD CONSTRAINT `courses_ibfk_1` FOREIGN KEY (`categoryID`) REFERENCES `categories` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `notifications`
@@ -433,21 +450,21 @@ ALTER TABLE `notifications`
 -- Constraints for table `student_courses`
 --
 ALTER TABLE `student_courses`
-  ADD CONSTRAINT `student_courses_ibfk_1` FOREIGN KEY (`courseID`) REFERENCES `courses` (`ID`),
-  ADD CONSTRAINT `student_courses_ibfk_2` FOREIGN KEY (`studentID`) REFERENCES `users` (`ID`);
+  ADD CONSTRAINT `student_courses_ibfk_1` FOREIGN KEY (`courseID`) REFERENCES `courses` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `student_courses_ibfk_2` FOREIGN KEY (`studentID`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `teachers_courses`
 --
 ALTER TABLE `teachers_courses`
-  ADD CONSTRAINT `teachers_courses_ibfk_1` FOREIGN KEY (`teacherID`) REFERENCES `users` (`ID`),
-  ADD CONSTRAINT `teachers_courses_ibfk_2` FOREIGN KEY (`courseID`) REFERENCES `courses` (`ID`);
+  ADD CONSTRAINT `teachers_courses_ibfk_1` FOREIGN KEY (`teacherID`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `teachers_courses_ibfk_2` FOREIGN KEY (`courseID`) REFERENCES `courses` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`roleID`) REFERENCES `roles` (`ID`);
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`roleID`) REFERENCES `roles` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

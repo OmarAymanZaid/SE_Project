@@ -65,11 +65,11 @@ class AuthController
         if($result != false)
         {
             $_SESSION['userID'] = $result;
-            $_SESSION['userName'] = $user->name;
-            $_SESSION['userImage'] = $user->image;
-            if($user->roleID == ADMIN_ROLE)
+            $_SESSION['userName'] = $user->getName();
+            $_SESSION['userImage'] = $user->getImage();
+            if($user->getRoleID() == ADMIN_ROLE)
                 $_SESSION['userRole'] = "admin";
-            elseif($user->roleID == STUDENT_ROLE)
+            elseif($user->getRoleID() == STUDENT_ROLE)
                 $_SESSION['userRole'] = "student";
             else
                 $_SESSION['userRole'] = "teacher";
